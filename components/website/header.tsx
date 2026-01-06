@@ -7,13 +7,13 @@ type Props = {}
 
 const Header = (props: Props) => {
   return (
-    <div className='px-8 border bg-white flex justify-between items-center relative'>
+    <div className='md:px-8 px-4 h-20 overflow-hidden z-50 border bg-white flex justify-between items-center fixed top-0 left-0 right-0'>
        <aside>
           <Image 
            alt='Logo'
            height={80}
            width={180}
-           src={'/assets/logo.png'}>
+           src={'/assets/logo.jpg'}>
           </Image>
        </aside>
        <nav className='hidden md:block absolute left-[50%] top-[50%] transform translate-x-[-50%] translate-y-[-50%]'>
