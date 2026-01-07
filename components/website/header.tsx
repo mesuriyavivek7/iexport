@@ -11,8 +11,8 @@ const Header = (props: Props) => {
        <aside>
           <Image 
            alt='Logo'
-           height={80}
-           width={180}
+           height={90}
+           width={200}
            src={'/assets/logo.jpg'}>
           </Image>
        </aside>

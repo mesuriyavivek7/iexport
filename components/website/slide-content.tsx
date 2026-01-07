@@ -8,7 +8,7 @@ const SlideContent = ({slide} : {slide:slide}) => {
     <div
     className='relative h-full w-screen'
     >
-        <div className='absolute z-20 bg-black/40 inset-0'>
+        <div className='absolute z-20 bg-black/50 inset-0'>
         </div>
         <Image
          fill
@@ -25,7 +25,7 @@ const SlideContent = ({slide} : {slide:slide}) => {
           <p className="text-lg md:text-xl mb-6 opacity-90">
             {slide.description}
           </p>
-          <button className="px-6 py-3 bg-white text-black rounded-full font-semibold hover:bg-gray-200 transition">
+          <button className="px-6 cursor-pointer py-3 bg-[#921314] hover:bg-[#B91C1C] text-white font-semibold transition">
             {slide.cta}
           </button>
          </div>

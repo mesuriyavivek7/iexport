@@ -1,26 +1,27 @@
 export const homeSlides = [
-    {
-      id: 1,
-      title: "Build AI Products Faster",
-      description: "Launch AI chatbots & voice agents in weeks",
-      image: "/assets/hero1.jpg",
-      cta: "Get Started"
-    },
-    {
-      id: 2,
-      title: "AI Voice Agents",
-      description: "Automate calls, support & sales with AI",
-      image: "/assets/hero2.jpg",
-      cta: "Explore"
-    },
-    {
-      id: 3,
-      title: "Enterprise Automation",
-      description: "Connect CRM, WhatsApp, Slack & more",
-      image: "/assets/hero1.jpg",
-      cta: "See Solutions"
-    }
-]
+  {
+    id: 1,
+    title: "Premium Seeds for Global Agriculture",
+    description: "Exporting high-quality seeds to farmers and businesses worldwide",
+    image: "/assets/hero1.jpg",
+    cta: "Explore Products"
+  },
+  {
+    id: 2,
+    title: "Trusted Import & Export Partner",
+    description: "Reliable sourcing and global distribution of certified seeds",
+    image: "/assets/hero2.jpg",
+    cta: "Why Choose Us"
+  },
+  {
+    id: 3,
+    title: "Sustainable Seeds. Strong Harvests.",
+    description: "Supporting sustainable farming with superior seed quality",
+    image: "/assets/hero1.jpg",
+    cta: "Our Process"
+  }
+];
+
 
 export interface slide{
   id:number,

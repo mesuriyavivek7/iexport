@@ -1,12 +1,12 @@
 import Image from "next/image";
 import HomeCarousle from "@/components/website/home-carousle";
+import About from "@/components/website/about";
 
 export default function Home() {
   return (
     <div>
-       <div className="w-screen h-screen">
         <HomeCarousle></HomeCarousle>
-       </div>
+        <About></About>
     </div>
   );
 }

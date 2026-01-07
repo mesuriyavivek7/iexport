@@ -14,42 +14,41 @@ const HomeCarousle = (props: Props) => {
   const nextRef = useRef<HTMLButtonElement>(null)
   return (
     <section 
-    className='h-full w-screen relative'
+    className='h-160 w-screen relative'
     >
          <button
         ref={prevRef}
-        className="absolute left-6 top-1/2 z-20 -translate-y-1/2 
-                   bg-black/50 text-white p-4 rounded-full 
+        className="absolute cursor-pointer left-6 top-1/2 z-20 -translate-y-1/2 
+                   bg-black/40 text-white p-4 rounded-full 
                    hover:bg-black transition"
       >
-        ←
+        <ChevronLeft></ChevronLeft>
       </button>
 
       <button
         ref={nextRef}
-        className="absolute right-6 top-1/2 z-20 -translate-y-1/2 
-                   bg-black/50 text-white p-4 rounded-full 
+        className="absolute cursor-pointer right-6 top-1/2 z-20 -translate-y-1/2 
+                   bg-black/40 text-white p-4 rounded-full 
                    hover:bg-black transition"
       >
-        →
+        <ChevronRight></ChevronRight>
       </button>
         <Swiper
         modules={[Autoplay, Navigation]}
         autoplay={{ delay: 4000 }}
         pagination={{ clickable: true }}
-        navigation
+        loop
         onBeforeInit={(swiper) => {
             // @ts-ignore – Swiper typing limitation
             swiper.params.navigation.prevEl = prevRef.current
             // @ts-ignore
             swiper.params.navigation.nextEl = nextRef.current
-          }}
-          navigation={{
+        }}
+        navigation={{
             prevEl: prevRef.current,
             nextEl: nextRef.current,
-          }}
-        loop
-        className="md:h-5/6 h-4/6"
+        }}
+        className='h-full w-full'
         >
             {
                 homeSlides.map(slide => (
