@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 // import { Geist, Geist_Mono } from "next/font/google";
-import { Inter } from 'next/font/google'
+import { Open_Sans } from "next/font/google";
 import "./globals.css";
 
 // const geistSans = Geist({
@@ -13,7 +13,11 @@ import "./globals.css";
 //   subsets: ["latin"],
 // });
 
-const font = Inter({ subsets: ['latin'] })
+const font =  Open_Sans({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"], // optional but recommended
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
