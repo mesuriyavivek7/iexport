@@ -1,7 +1,7 @@
 "use client"
 import React, {useRef} from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Autoplay, Navigation } from 'swiper/modules'
+import { Navigation } from 'swiper/modules'
 import 'swiper/css'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { productSlides } from '@/data/productSlides'
