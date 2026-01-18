@@ -2,6 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import { Button } from '../ui/button'
 import { ChevronRight } from 'lucide-react'
+import Link from 'next/link'
 
 type Props = {}
 
@@ -31,10 +32,12 @@ const About = (props: Props) => {
               At Procure Exports, we believe in connecting cultures through the richness of food and agriculture. Our carefully sourced products are cultivated with care, meeting the highest standards of quality and freshness. Whether it's the vibrant flavors of fresh produce, the bold aroma of our spices, the rich taste of coffee, or the superior quality of our rice, we ensure every product reflects our dedication to excellence. 
              </p>
              </div>
-             <Button size={"lg"} className='w-44 bg-[#082f49] hover:bg-[#0b4a6f]  font-bold cursor-pointer '>
+             <Link href={'/about'}>
+             <Button size={"lg"} className='w-48 group bg-[#082f49] hover:bg-[#0b4a6f]  font-bold cursor-pointer '>
                 Read More Details
-                <ChevronRight></ChevronRight>
+                <ChevronRight className='group-hover:translate-x-2 transition-all duration-300'></ChevronRight>
              </Button>
+             </Link>
            </div>
         </section>
     </div>

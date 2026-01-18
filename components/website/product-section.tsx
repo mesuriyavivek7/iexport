@@ -1,5 +1,8 @@
 import React from 'react'
 import ProductSlider from './product-slider'
+import Link from 'next/link'
+import { ChevronRight } from 'lucide-react'
+import { Button } from '../ui/button'
 
 type Props = {}
 
@@ -16,6 +19,14 @@ const Products = (props: Props) => {
                  Experience the finest products, sourced responsibly and delivered with uncompromising quality.
              </h4>
              <ProductSlider></ProductSlider>
+             <div className='flex justify-center items-center'>
+            <Link href={'/about'}>
+             <Button size={"lg"} className='w-48 group bg-[#082f49] hover:bg-[#0b4a6f]  font-bold cursor-pointer '>
+                View All Products
+                <ChevronRight className='group-hover:translate-x-2 transition-all duration-300'></ChevronRight>
+             </Button>
+             </Link>
+      </div>
         </section>
     </div>
   )

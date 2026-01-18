@@ -1,7 +1,6 @@
 import React from 'react'
 import { product } from '@/data/productSlides'
 import Image from 'next/image'
-import { Button } from '../ui/button'
 
 const ProductSlideCard = ({product}: {product:product}) => {
   return (
