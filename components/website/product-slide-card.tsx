@@ -5,7 +5,7 @@ import { Button } from '../ui/button'
 
 const ProductSlideCard = ({product}: {product:product}) => {
   return (
-    <div className="bg-white cursor-pointer rounded-xl shadow hover:shadow-xl duration-300 transition p-4">
+    <div className="bg-white cursor-pointer rounded-xl shadow border hover:shadow-xl duration-300 transition p-4">
       <div className="relative h-40 w-full mb-4">
         <Image
           src={product.image}
