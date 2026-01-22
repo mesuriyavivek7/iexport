@@ -147,3 +147,7 @@
 .btn-primary:hover{
   background-color: var(--color-primary-blue-hover);
 }
+
+.text-outline{
+  -webkit-text-stroke: 2px currentColor;
+}

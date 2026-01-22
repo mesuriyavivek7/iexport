@@ -13,7 +13,7 @@ const Hero = (props: Props) => {
         ></Image>
         <section className='h-full z-40 pt-44 pb-20 flex flex-col justify-between max-w-6xl mx-auto relative'>
           <div className='flex flex-col gap-4'>
-            <h1 className='text-6xl tracking-wide text-white font-medium leading-18'>
+            <h1 className='text-6xl tracking-wide text-white text-outline font-medium leading-18'>
               PREMIUM SEEDS <br></br>FOR GLOBAL AGRICULTURE
             </h1>
             <p className='text-white text-lg tracking-wide'>Import export of speciality finest quality agricultural and food products</p>

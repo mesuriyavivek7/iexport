@@ -19,16 +19,16 @@ const Header = (props: Props) => {
     return () => window.removeEventListener("scroll", handleScroll)
   },[])
   return (
-    <div className={`py-2 overflow-hidden z-50 shadow backdrop-blur-sm ${isScrolled ? "bg-[#082F49]/30" : "bg-[#f1f5f9]/10"} transition-all duration-300 fixed top-0 left-0 right-0`}>
+    <div className={`py-2 overflow-hidden backdrop-blur-sm z-50 shadow  ${isScrolled ? "bg-[#082F49]/40" : "bg-[#f1f5f9]/10"} transition-all duration-300 fixed top-0 left-0 right-0`}>
        <section className='flex justify-between items-center mx-auto max-w-6xl'>
-       <div>
+       <Link href={'/'}>
           <Image 
            alt='Logo'
            height={80}
            width={180}
            src={'/assets/whlogo.png'}>
           </Image>
-       </div>
+       </Link>
        <nav className='hidden md:block'>
          <ul className='flex items-center justify-center gap-8'>
             <Link className='font-medium text-white transition-all tracking-wide duration-300  hover:text-(--color-secondary-blue)' href='/'>HOME</Link>
