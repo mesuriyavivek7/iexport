@@ -48,8 +48,8 @@ const Transaport = (props: Props) => {
          <div className='flex flex-col gap-4'>
            <div className='border-b pb-4'>
              <h1 className='text-4xl leading-12 font-bold'> 
-               <span className='text-[#082f49]'>Excellence in Every Trade, </span>
-               <span className='text-[#B91C1C]'>Trust in Every Deal</span>
+               <span className='text-primary'>Excellence in Every Trade, </span>
+               <span className='text-secondary'>Trust in Every Deal</span>
               </h1>
            </div>
            <div className='flex flex-col gap-2'>
@@ -58,49 +58,49 @@ const Transaport = (props: Props) => {
            </div>
            <div className='grid grid-cols-2 items-center gap-4'>
              <div className='flex items-center gap-2'>
-               <span className='bg-[#B91C1C] p-1 rounded-md'>
+               <span className='bg-(--color-secondary-blue) p-1 rounded-md'>
                  <Check size={22} className='text-white'></Check>
                </span>
                <span>Uncompromising Quality</span>
              </div>
              <div className='flex items-center gap-2'>
-               <span className='bg-[#B91C1C] p-1 rounded-md'>
+               <span className='bg-(--color-secondary-blue) p-1 rounded-md'>
                  <Check size={22} className='text-white'></Check>
                </span>
                <span>On-Time Global Deliveries</span>
              </div>
              <div className='flex items-center gap-2'>
-               <span className='bg-[#B91C1C] p-1 rounded-md'>
+               <span className='bg-(--color-secondary-blue) p-1 rounded-md'>
                  <Check size={22} className='text-white'></Check>
                </span>
                <span>Customer-Focused Solutions</span>
              </div>
              <div className='flex items-center gap-2'>
-               <span className='bg-[#B91C1C] p-1 rounded-md'>
+               <span className='bg-(--color-secondary-blue) p-1 rounded-md'>
                  <Check size={22} className='text-white'></Check>
                </span>
                <span>Trusted Worldwide Network</span>
              </div>
              <div className='flex items-center gap-2'>
-               <span className='bg-[#B91C1C] p-1 rounded-md'>
+               <span className='bg-(--color-secondary-blue) p-1 rounded-md'>
                  <Check size={22} className='text-white'></Check>
                </span>
                <span>Ethical & Sustainable Practices</span>
              </div>
              <div className='flex items-center gap-2'>
-               <span className='bg-[#B91C1C] p-1 rounded-md'>
+               <span className='bg-(--color-secondary-blue) p-1 rounded-md'>
                  <Check size={22} className='text-white'></Check>
                </span>
                <span>Competitive Pricing Options</span>
              </div>
              <div className='flex items-center gap-2'>
-               <span className='bg-[#B91C1C] p-1 rounded-md'>
+               <span className='bg-(--color-secondary-blue) p-1 rounded-md'>
                  <Check size={22} className='text-white'></Check>
                </span>
                <span>Grachnoce Chorantead</span>
              </div>
              <div className='flex items-center gap-2'>
-               <span className='bg-[#B91C1C] p-1 rounded-md'>
+               <span className='bg-(--color-secondary-blue) p-1 rounded-md'>
                  <Check size={22} className='text-white'></Check>
                </span>
                <span>Evnort Team Cunnart</span>

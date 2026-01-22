@@ -9,7 +9,7 @@ type Props = {
 
 const Layout = ({children}: Props) => {
   return (
-    <main className='h-full pt-20'>
+    <main className='h-full'>
         <Header></Header>
         {children}
         <Footer></Footer>

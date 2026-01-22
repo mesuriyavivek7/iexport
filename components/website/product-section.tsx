@@ -11,8 +11,8 @@ const Products = (props: Props) => {
     <div className='px-8 bg-[#ebf4fa] py-20'>
         <section className='mx-auto  max-w-6xl flex flex-col gap-4'>
              <h1 className='text-4xl text-center font-bold'>
-                <span className='text-[#082f49]'>Crafted by Nature, </span> 
-                <span className='text-[#B91C1C]'>Delivered with Care</span>
+                <span className='text-primary'>Crafted by Nature, </span> 
+                <span className='text-secondary'>Delivered with Care</span>
              </h1>
              <hr></hr>
              <h4 className='text-lg text-center text-[#333333]'>
@@ -21,7 +21,7 @@ const Products = (props: Props) => {
              <ProductSlider></ProductSlider>
              <div className='flex justify-center items-center'>
             <Link href={'/about'}>
-             <Button size={"lg"} className='w-48 group bg-[#082f49] hover:bg-[#0b4a6f]  font-bold cursor-pointer '>
+             <Button size={"lg"} className='w-48 group btn-primary font-bold cursor-pointer '>
                 View All Products
                 <ChevronRight className='group-hover:translate-x-2 transition-all duration-300'></ChevronRight>
              </Button>

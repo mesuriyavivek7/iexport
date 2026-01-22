@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Hero from "@/components/website/hero";
 import HomeCarousle from "@/components/website/home-carousle";
 import About from "@/components/website/about";
 import Products from "@/components/website/product-section";
@@ -10,7 +10,8 @@ import CertificateSlider from "@/components/website/certificate-slider";
 export default function Home() {
   return (
     <div>
-        <HomeCarousle></HomeCarousle>
+        {/* <HomeCarousle></HomeCarousle> */}
+        <Hero></Hero>
         <About></About>
         <Products></Products>
         <ShowCase></ShowCase>

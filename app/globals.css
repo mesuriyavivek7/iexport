@@ -47,6 +47,9 @@
 }
 
 :root {
+  --color-primary-blue: #082F49;
+  --color-secondary-blue: #B08D57;
+  --color-primary-blue-hover: #0b4a6f;
   --box-shadow-default: 0px 0px 5px 1px rgba(0,0,0,0.4);
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -127,4 +130,20 @@
 
 .card{
   box-shadow: var(--box-shadow-default);
+}
+
+.text-primary {
+  color: var(--color-primary-blue);
+}
+
+.text-secondary {
+  color: var(--color-secondary-blue);
+}
+
+.btn-primary {
+  background-color: var(--color-primary-blue);
+}
+
+.btn-primary:hover{
+  background-color: var(--color-primary-blue-hover);
 }

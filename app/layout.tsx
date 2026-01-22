@@ -1,22 +1,12 @@
 import type { Metadata } from "next";
-// import { Geist, Geist_Mono } from "next/font/google";
-import { Open_Sans } from "next/font/google";
+import { Roboto_Condensed } from "next/font/google";
 import "./globals.css";
 
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
-
-const font =  Open_Sans({
+const robotoCondensed = Roboto_Condensed({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"], // optional but recommended
+  weight: ["300", "400", "500", "700"],
   display: "swap",
+  variable: "--font-roboto-condensed", // optional (recommended)
 });
 
 export const metadata: Metadata = {
@@ -31,9 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-      className={font.className}
-      >
+      <body className={robotoCondensed.className}>
         {children}
       </body>
     </html>

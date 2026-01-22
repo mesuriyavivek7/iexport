@@ -1,32 +1,43 @@
-import React from 'react'
+"use client"
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Button } from '../ui/button'
 
 type Props = {}
 
 const Header = (props: Props) => {
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(()=>{
+    const handleScroll = () =>{
+      setIsScrolled(window.scrollY > 0)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll)
+  },[])
   return (
-    <div className='md:px-8 px-4 h-20 overflow-hidden z-50 border bg-white flex justify-between items-center fixed top-0 left-0 right-0'>
-       <aside>
+    <div className={`py-2 overflow-hidden z-50 shadow backdrop-blur-sm ${isScrolled ? "bg-[#082F49]/30" : "bg-[#f1f5f9]/10"} transition-all duration-300 fixed top-0 left-0 right-0`}>
+       <section className='flex justify-between items-center mx-auto max-w-6xl'>
+       <div>
           <Image 
            alt='Logo'
-           height={90}
-           width={200}
-           src={'/assets/logo.jpg'}>
+           height={80}
+           width={180}
+           src={'/assets/whlogo.png'}>
           </Image>
-       </aside>
-       <nav className='hidden md:block absolute left-[50%] top-[50%] transform translate-x-[-50%] translate-y-[-50%]'>
+       </div>
+       <nav className='hidden md:block'>
          <ul className='flex items-center justify-center gap-8'>
-            <Link className='font-medium transition-all duration-300 text-foreground hover:text-[#921314]' href='/'>Home</Link>
-            <Link className='font-medium transition-all duration-300 text-foreground hover:text-[#921314]' href='/products'>Products</Link>
-            <Link className='font-medium transition-all duration-300 text-foreground hover:text-[#921314]' href='/about'>About Us</Link>
-            <Link className='font-medium transition-all duration-300 text-foreground hover:text-[#921314]' href='/contact'>Contact Us</Link>
+            <Link className='font-medium text-white transition-all tracking-wide duration-300  hover:text-(--color-secondary-blue)' href='/'>HOME</Link>
+            <Link className='font-medium transition-all duration-300 tracking-wide text-white hover:text-(--color-secondary-blue)' href='/products'>PRODUCTS</Link>
+            <Link className='font-medium transition-all duration-300 tracking-wide text-white hover:text-(--color-secondary-blue)' href='/about'>ABOUT US</Link>
+            <Link className='font-medium transition-all duration-300 tracking-wide text-white hover:text-(--color-secondary-blue)' href='/contact'>CONTACT US</Link>
          </ul>
        </nav>
-       <Button className='bg-[#921314] hover:bg-[#B91C1C] font-bold cursor-pointer' size={"lg"}>
-         Get In Touch
-       </Button>
+       </section>
     </div>
   )
 }

@@ -14,14 +14,14 @@ const Contact = (props: Props) => {
              <div className='flex flex-col items-center gap-4'>
                <span className='text-lg text-[#9b9b9b] font-medium'>CONTACT US</span>
                <h1 className='text-5xl leading-12 font-bold'>
-                  <span className='text-[#082f49]'>Get in touch </span>
-                  <span className='text-[#B91C1C]'>with us</span>
+                  <span className='text-primary'>Get in touch </span>
+                  <span className='text-secondary'>with us</span>
                </h1>
                <p className='text-center w-3xl text-[16px] text-[#333333] leading-7'>We’d love to discuss your sourcing, exporting, or bulk supply requirements.
                 Fill out the form below or reach out to us directly for reliable and timely import–export solutions.</p>
              </div>
 
-             <div className='grid grid-cols-2 gap-20 mt-16 items-start'>
+             <div className='grid grid-cols-2 gap-20 mt-28 items-start'>
                <div>
                 <form className='flex flex-col gap-6'>
                     <div className='flex flex-col gap-2'>
@@ -36,7 +36,7 @@ const Contact = (props: Props) => {
                         <label htmlFor="message" className='text-sm'>MESSAGE</label>
                         <textarea placeholder='Enter your message' id='message' className='border p-2 outline-none resize-none rounded-md shadow-sm'></textarea>
                     </div>
-                    <Button className='cursor-pointer mt-4 h-12 bg-[#082F49] hover:bg-[#0b4a6f] font-bold' size={"lg"}>
+                    <Button className='cursor-pointer mt-4 h-12 btn-primary font-bold' size={"lg"}>
                         Send your inquiry
                     </Button>
                 </form>
