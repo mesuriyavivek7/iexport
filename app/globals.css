@@ -50,6 +50,8 @@
   --color-primary-blue: #082F49;
   --color-secondary-blue: #B08D57;
   --color-primary-blue-hover: #0b4a6f;
+  --color-primary-purple: #5850f2;
+  --color-primary-purple-hover:#6862f3;
   --box-shadow-default: 0px 0px 5px 1px rgba(0,0,0,0.4);
   --radius: 0.625rem;
   --background: oklch(1 0 0);

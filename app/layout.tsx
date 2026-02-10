@@ -1,13 +1,5 @@
 import type { Metadata } from "next";
-import { Roboto_Condensed } from "next/font/google";
 import "./globals.css";
-
-const robotoCondensed = Roboto_Condensed({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
-  display: "swap",
-  variable: "--font-roboto-condensed", // optional (recommended)
-});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,7 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={robotoCondensed.className}>
+      <body>
         {children}
       </body>
     </html>

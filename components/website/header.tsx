@@ -32,7 +32,7 @@ const Header = (props: Props) => {
        <nav className='hidden md:block'>
          <ul className='flex items-center justify-center gap-8'>
             <Link className='font-medium text-white transition-all tracking-wide duration-300  hover:text-(--color-secondary-blue)' href='/'>HOME</Link>
-            <Link className='font-medium transition-all duration-300 tracking-wide text-white hover:text-(--color-secondary-blue)' href='/products'>PRODUCTS</Link>
+            <Link className='font-medium transition-all duration-300 tracking-wide text-white hover:text-(--color-secondary-blue)' href='/categories'>PRODUCTS</Link>
             <Link className='font-medium transition-all duration-300 tracking-wide text-white hover:text-(--color-secondary-blue)' href='/about'>ABOUT US</Link>
             <Link className='font-medium transition-all duration-300 tracking-wide text-white hover:text-(--color-secondary-blue)' href='/contact'>CONTACT US</Link>
          </ul>

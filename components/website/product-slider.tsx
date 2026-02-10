@@ -4,8 +4,8 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper/modules'
 import 'swiper/css'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { productSlides } from '@/data/productSlides'
-import ProductSlideCard from './product-slide-card'
+import { categories } from '@/data/category'
+import CategoryCard from './category-card'
 
 type Props = {}
 
@@ -49,9 +49,9 @@ const ProductSlider = (props: Props) => {
           },
         }}
       >
-        {productSlides.map((product) => (
-          <SwiperSlide key={product.id}>
-            <ProductSlideCard product={product} />
+        {categories.map((category) => (
+          <SwiperSlide key={category.id}>
+            <CategoryCard category={category}></CategoryCard>
           </SwiperSlide>
         ))}
       </Swiper>
