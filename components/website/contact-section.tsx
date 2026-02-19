@@ -5,7 +5,7 @@ import { Mail } from 'lucide-react'
 const Contact = () => {
   return (
     <div className='relative py-12 md:py-20'>
-      <div className='md:w-4/5 w-11/12 flex relative md:min-h-[220px] min-h-60 overflow-hidden lg:overflow-visible'>
+      <div className='md:w-4/5 w-11/12 flex relative md:min-h-[220px] min-h-96 overflow-hidden lg:overflow-visible p-4'>
         <div className='w-2/5 bg-linear-to-r from-[#8F6F3E] to-[#BFA06A] shrink-0' />
         <div className='w-3/5 rounded-r-2xl bg-linear-to-r from-[#0d2d47] to-[#0b4a6f] shrink-0' />
 
