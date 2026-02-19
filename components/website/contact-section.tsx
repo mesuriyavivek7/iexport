@@ -2,9 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import { Mail } from 'lucide-react'
 
-type Props = {}
-
-const Contact = (props: Props) => {
+const Contact = () => {
   return (
     <div className='relative py-12 md:py-20'>
       <div className='md:w-4/5 w-11/12 flex relative md:min-h-[220px] min-h-60 overflow-hidden lg:overflow-visible'>

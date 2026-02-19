@@ -1,9 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 
-type Props = {}
-
-const About = (props: Props) => {
+const About = () => {
   return (
     <div>
       {/* Header Section */}

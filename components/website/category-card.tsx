@@ -3,9 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { category } from '@/data/category'
 
-type Props = {}
-
-const CategoryCard = ({category}: {category: category}) => {
+const CategoryCard = ({ category }: { category: category }) => {
   return (
     <Link href={`/categories/${category.id}`}>
       <div className="bg-white overflow-hidden relative cursor-pointer rounded-xl shadow border hover:shadow-xl duration-300 transition p-4">

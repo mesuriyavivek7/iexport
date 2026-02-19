@@ -20,8 +20,6 @@ const Countup = ({end, duration= 1500}: Props) => {
       ([entry]) => {
         if (entry.isIntersecting && !hasAnimated.current) {
           hasAnimated.current = true;
-
-          let start = 1;
           const startTime = performance.now();
 
           const animate = (currentTime: number) => {

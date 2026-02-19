@@ -153,3 +153,7 @@
 .text-outline{
   -webkit-text-stroke: 2px currentColor;
 }
+
+.font-roboto-condensed {
+  font-family: 'Roboto Condensed', sans-serif;
+}

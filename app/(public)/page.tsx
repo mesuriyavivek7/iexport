@@ -1,5 +1,4 @@
 import Hero from "@/components/website/hero";
-import HomeCarousle from "@/components/website/home-carousle";
 import About from "@/components/website/about";
 import Products from "@/components/website/product-section";
 import ShowCase from "@/components/website/showcase-section";

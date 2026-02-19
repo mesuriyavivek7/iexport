@@ -1,9 +1,7 @@
 import React from 'react'
 import Countup from './countup'
 
-type Props = {}
-
-const ShowCase = (props: Props) => {
+const ShowCase = () => {
   return (
     <div className='relative px-6 py-12 md:px-8 md:py-20'>
       <div

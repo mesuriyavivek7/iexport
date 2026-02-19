@@ -4,9 +4,7 @@ import Link from 'next/link'
 
 import { Mail, Phone, MapPin } from 'lucide-react';
 
-type Props = {}
-
-const Footer = (props: Props) => {
+const Footer = () => {
   return (
     <div className='bg-[#041d2d] px-4 py-10 sm:px-6 sm:py-12 md:px-8 md:py-16'>
       <section className='mx-auto max-w-6xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 items-start gap-10 sm:gap-12 lg:gap-16'>

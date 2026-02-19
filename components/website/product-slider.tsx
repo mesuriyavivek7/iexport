@@ -7,9 +7,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { categories } from '@/data/category'
 import CategoryCard from './category-card'
 
-type Props = {}
-
-const ProductSlider = (props: Props) => {
+const ProductSlider = () => {
   const prevRef = useRef<HTMLButtonElement>(null)
   const nextRef = useRef<HTMLButtonElement>(null)
   return (
@@ -28,9 +26,9 @@ const ProductSlider = (props: Props) => {
         spaceBetween={20}
         slidesPerView={4}
         onBeforeInit={(swiper) => {
-          // @ts-ignore
+          // @ts-expect-error - Swiper types don't expose navigation ref assignment
           swiper.params.navigation.prevEl = prevRef.current
-          // @ts-ignore
+          // @ts-expect-error - Swiper types don't expose navigation ref assignment
           swiper.params.navigation.nextEl = nextRef.current
         }}
         navigation={{

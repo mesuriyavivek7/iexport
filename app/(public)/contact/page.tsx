@@ -2,9 +2,7 @@ import { Button } from '@/components/ui/button'
 import React from 'react'
 import { SquareCheckBig, Phone, Mail, Instagram, Linkedin, Facebook } from 'lucide-react'
 
-type Props = {}
-
-const Contact = (props: Props) => {
+const Contact = () => {
   return (
     <div>
       <div className='relative pt-28 sm:pt-36 pb-10 sm:pb-16'>

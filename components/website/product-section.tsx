@@ -4,9 +4,7 @@ import Link from 'next/link'
 import { ChevronRight } from 'lucide-react'
 import { Button } from '../ui/button'
 
-type Props = {}
-
-const Products = (props: Props) => {
+const Products = () => {
   return (
     <div className='px-6 py-12 md:px-8 md:py-20 bg-[#ebf4fa]'>
       <section className='mx-auto max-w-6xl flex flex-col gap-4 sm:gap-5'>

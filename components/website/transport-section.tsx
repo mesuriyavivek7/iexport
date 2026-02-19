@@ -2,9 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import { Check } from 'lucide-react'
 
-type Props = {}
-
-const Transaport = (props: Props) => {
+const Transaport = () => {
   return (
     <div className='relative px-6 py-12 md:px-8 md:py-20'>
       <section className='mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-2 items-center gap-6 lg:gap-8'>

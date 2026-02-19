@@ -5,13 +5,12 @@ import ProductSlideCard from '@/components/website/product-slide-card'
 import { notFound } from 'next/navigation'
 
 type Props = {
-  params: {
-    id: string
-  }
+  params: Promise<{ id: string }>
 }
 
-const CategoryPage = ({ params }: Props) => {
-  const categoryId = parseInt(params.id)
+const CategoryPage = async ({ params }: Props) => {
+  const { id } = await params
+  const categoryId = parseInt(id)
   
   // Find the category by id
   const category = categories.find(cat => cat.id === categoryId)

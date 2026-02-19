@@ -2,9 +2,7 @@ import React from 'react'
 import { categories } from '@/data/category'
 import CategoryCard from '@/components/website/category-card'
 
-type Props = {}
-
-const Products = (props: Props) => {
+const Products = () => {
   return (
     <div>
       {/* Header Part */}

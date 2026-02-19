@@ -7,9 +7,7 @@ import 'swiper/css'
 import { homeSlides } from '@/data/homeSlides'
 import SlideContent from './slide-content'
 
-type Props = {}
-
-const HomeCarousle = (props: Props) => {
+const HomeCarousle = () => {
   const prevRef = useRef<HTMLButtonElement>(null)
   const nextRef = useRef<HTMLButtonElement>(null)
   return (
@@ -39,9 +37,9 @@ const HomeCarousle = (props: Props) => {
         pagination={{ clickable: true }}
         loop
         onBeforeInit={(swiper) => {
-            // @ts-ignore – Swiper typing limitation
+            // @ts-expect-error - Swiper types don't expose navigation ref assignment
             swiper.params.navigation.prevEl = prevRef.current
-            // @ts-ignore
+            // @ts-expect-error - Swiper types don't expose navigation ref assignment
             swiper.params.navigation.nextEl = nextRef.current
         }}
         navigation={{

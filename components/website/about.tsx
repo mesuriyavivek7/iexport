@@ -4,9 +4,7 @@ import { Button } from '../ui/button'
 import { ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 
-type Props = {}
-
-const About = (props: Props) => {
+const About = () => {
   return (
     <div className='px-6 py-12 md:px-8 md:py-20'>
       <section className='mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-2 items-center gap-8 lg:gap-4'>
@@ -33,7 +31,7 @@ const About = (props: Props) => {
               Welcome to Procure Exports, your trusted partner in delivering the finest quality agricultural and food products to markets worldwide. With a passion for excellence and a commitment to global trade, we specialize in the export of premium fruits and vegetables, authentic spices, aromatic coffee, and high-grade rice.
             </p>
             <p className='text-[#333333] text-center md:text-left text-sm sm:text-base leading-6 sm:leading-7'>
-              At Procure Exports, we believe in connecting cultures through the richness of food and agriculture. Our carefully sourced products are cultivated with care, meeting the highest standards of quality and freshness. Whether it's the vibrant flavors of fresh produce, the bold aroma of our spices, the rich taste of coffee, or the superior quality of our rice, we ensure every product reflects our dedication to excellence.
+              At Procure Exports, we believe in connecting cultures through the richness of food and agriculture. Our carefully sourced products are cultivated with care, meeting the highest standards of quality and freshness. Whether it&apos;s the vibrant flavors of fresh produce, the bold aroma of our spices, the rich taste of coffee, or the superior quality of our rice, we ensure every product reflects our dedication to excellence.
             </p>
           </div>
           <Link href={'/about'} className='flex justify-center md:justify-start items-center w-auto'>

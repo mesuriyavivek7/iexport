@@ -7,9 +7,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { certificateSlides } from '@/data/certificateSlides'
 import CertificateSlideCard from './certificate-slide-card'
 
-type Props = {}
-
-const CertificateSlider = (props: Props) => {
+const CertificateSlider = () => {
   const prevRef = useRef<HTMLButtonElement>(null)
   const nextRef = useRef<HTMLButtonElement>(null)
 
@@ -37,9 +35,9 @@ const CertificateSlider = (props: Props) => {
           modules={[Navigation]}
           spaceBetween={12}
           onBeforeInit={(swiper) => {
-            // @ts-ignore
+            // @ts-expect-error - Swiper types don't expose navigation ref assignment
             swiper.params.navigation.prevEl = prevRef.current
-            // @ts-ignore
+            // @ts-expect-error - Swiper types don't expose navigation ref assignment
             swiper.params.navigation.nextEl = nextRef.current
           }}
           navigation={{

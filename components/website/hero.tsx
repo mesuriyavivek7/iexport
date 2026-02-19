@@ -1,9 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 
-type Props = {}
-
-const Hero = (props: Props) => {
+const Hero = () => {
   return (
     <div className='relative min-h-[60vh] sm:min-h-[75vh] lg:h-180 w-full overflow-hidden'>
       <Image

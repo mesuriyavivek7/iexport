@@ -5,9 +5,7 @@ import { Button } from '@/components/ui/button'
 //Importing icons 
 import { Mail, Eye, EyeOff } from 'lucide-react'
 
-type Props = {}
-
-const Login = (props: Props) => {
+const Login = () => {
   const [showPassword, setShowpassword] = useState(false)
 
   return (
