@@ -8,89 +8,93 @@ type Props = {}
 
 const Footer = (props: Props) => {
   return (
-    <div className='bg-[#041d2d] px-8 py-16'>
-        <section className='mx-auto max-w-6xl grid grid-cols-4 items-start gap-16'>
-            <div className='flex flex-col gap-4'>
-               <Image
-               alt='logo'
-               height={90}
-               width={200}
-               src={'/assets/whlogo.png'}
-               ></Image>
-               <p className='text-[#adb6c0] leading-8 text-[17px] tracking-wide'>
-               We are a trusted supplier and trader, delivering premium-
-               quality products globally with a commitment to freshness,
-               reliability, and customer satisfaction
-               </p>
-            </div>
+    <div className='bg-[#041d2d] px-4 py-10 sm:px-6 sm:py-12 md:px-8 md:py-16'>
+      <section className='mx-auto max-w-6xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 items-start gap-10 sm:gap-12 lg:gap-16'>
+        {/* Logo & about */}
+        <div className='flex flex-col gap-4 sm:col-span-2 lg:col-span-1'>
+          <Image
+            alt='logo'
+            height={90}
+            width={200}
+            src={'/assets/whlogo.png'}
+            className='h-14 w-auto sm:h-16 lg:h-[90px] object-contain object-left'
+          />
+          <p className='text-[#adb6c0] leading-7 text-[15px] sm:text-[17px] tracking-wide max-w-md'>
+            We are a trusted supplier and trader, delivering premium-
+            quality products globally with a commitment to freshness,
+            reliability, and customer satisfaction
+          </p>
+        </div>
 
-            <div>
-                <h1 className='text-lg relative inline-block text-white tracking-widest'>
-                    OUR EXPERTISE
-                    <hr className='h-1 border-none mt-4 w-full bg-[#2c3d4f]'/>
-                </h1>
-                <div className='flex mt-4 flex-col gap-2'>
-                    <span className='text-[#adb6c0]'>Fruits & Vegetables</span>
-                    <span className='text-[#adb6c0]'>Spices</span>
-                    <span className='text-[#adb6c0]'>Coffee</span>
-                    <span className='text-[#adb6c0]'>Rice</span>
-                    <span className='text-[#adb6c0]'>Multi Products</span>
-                </div>                
-            </div>
+        {/* Our expertise */}
+        <div>
+          <h2 className='text-base sm:text-lg relative inline-block text-white tracking-widest font-semibold'>
+            OUR EXPERTISE
+            <hr className='h-1 border-none mt-3 sm:mt-4 w-full bg-[#2c3d4f]'/>
+          </h2>
+          <div className='flex mt-3 sm:mt-4 flex-col gap-2'>
+            <span className='text-[#adb6c0] text-sm sm:text-base'>Fruits & Vegetables</span>
+            <span className='text-[#adb6c0] text-sm sm:text-base'>Spices</span>
+            <span className='text-[#adb6c0] text-sm sm:text-base'>Coffee</span>
+            <span className='text-[#adb6c0] text-sm sm:text-base'>Rice</span>
+            <span className='text-[#adb6c0] text-sm sm:text-base'>Multi Products</span>
+          </div>
+        </div>
 
-            <div>
-                 <h1 className='text-lg relative inline-block text-white tracking-widest'>
-                    USEFUL LINKS
-                    <hr className='h-1 border-none mt-4 w-full bg-[#2c3d4f]'/>
-                </h1>
-                <div className='flex mt-4 flex-col gap-2'>
-                    <Link className='text-[#adb6c0]' href={'#'}>Home</Link>
-                    <Link className='text-[#adb6c0]' href={'#'}>Products</Link>
-                    <Link className='text-[#adb6c0]' href={'#'}>About</Link>
-                    <Link className='text-[#adb6c0]' href={'#'}>Contact</Link>
-                </div>
-            </div>
+        {/* Useful links */}
+        <div>
+          <h2 className='text-base sm:text-lg relative inline-block text-white tracking-widest font-semibold'>
+            USEFUL LINKS
+            <hr className='h-1 border-none mt-3 sm:mt-4 w-full bg-[#2c3d4f]'/>
+          </h2>
+          <div className='flex mt-3 sm:mt-4 flex-col gap-2'>
+            <Link className='text-[#adb6c0] text-sm sm:text-base hover:text-white transition-colors py-1' href='/'>Home</Link>
+            <Link className='text-[#adb6c0] text-sm sm:text-base hover:text-white transition-colors py-1' href='/categories'>Products</Link>
+            <Link className='text-[#adb6c0] text-sm sm:text-base hover:text-white transition-colors py-1' href='/about'>About</Link>
+            <Link className='text-[#adb6c0] text-sm sm:text-base hover:text-white transition-colors py-1' href='/contact'>Contact</Link>
+          </div>
+        </div>
 
-            <div>
-                <h1 className='text-lg relative inline-block text-white tracking-widest'>
-                    CONTACT INFO
-                    <hr className='h-1 border-none mt-4 w-full bg-[#2c3d4f]'/>
-                </h1>
-                <div className='flex mt-4 flex-col gap-6'>
-                    <div className='flex items-center gap-2'>
-                        <span className='p-1 bg-white rounded-md'>
-                            <Phone size={22} className='text-[#041d2d]'></Phone>
-                        </span>
-                        <div className='flex flex-col'>
-                            <span className='text-white'>Patel Jainish</span>
-                            <span className='text-[#adb6c0] text-sm'>+91 6355007570</span>
-                        </div>
-                    </div>
-                    <div className='flex items-center gap-2'>
-                        <span className='p-1 bg-white rounded-md'>
-                            <Phone size={22} className='text-[#041d2d]'></Phone>
-                        </span>
-                        <div className='flex flex-col'>
-                            <span className='text-white'>Patel Yagnik</span>
-                            <span className='text-[#adb6c0] text-sm'>+91 9925867065</span>
-                        </div>
-                    </div>
-                    <div className='flex items-start gap-2'>
-                        <span className='p-1 bg-white rounded-md'>
-                            <Mail size={22} className='text-[#041d2d]'></Mail>
-                        </span>
-                        <span className='text-[#adb6c0]'>procureexport24@gmail.com</span>
-                    </div>
-                    <div className='flex items-start gap-2'>
-                        <span className='p-1 bg-white rounded-md'>
-                            <MapPin size={22} className='text-[#041d2d]'></MapPin>
-                        </span>
-                        <span className='text-[#adb6c0]'>584, Patel Vas, First Line, Ralisana, Visnagar, Mahesana</span>
-                    </div>
-                </div>
+        {/* Contact info */}
+        <div className='sm:col-span-2 lg:col-span-1'>
+          <h2 className='text-base sm:text-lg relative inline-block text-white tracking-widest font-semibold'>
+            CONTACT INFO
+            <hr className='h-1 border-none mt-3 sm:mt-4 w-full bg-[#2c3d4f]'/>
+          </h2>
+          <div className='flex mt-3 sm:mt-4 flex-col gap-4 sm:gap-6'>
+            <div className='flex items-center gap-3'>
+              <span className='p-1.5 sm:p-1 bg-white rounded-md shrink-0'>
+                <Phone size={20} className='text-[#041d2d] sm:w-[22px] sm:h-[22px]' aria-hidden />
+              </span>
+              <div className='flex flex-col min-w-0'>
+                <span className='text-white text-sm sm:text-base'>Patel Jainish</span>
+                <a href='tel:+916355007570' className='text-[#adb6c0] text-sm hover:text-white transition-colors'>+91 6355007570</a>
+              </div>
             </div>
-
-        </section>
+            <div className='flex items-center gap-3'>
+              <span className='p-1.5 sm:p-1 bg-white rounded-md shrink-0'>
+                <Phone size={20} className='text-[#041d2d] sm:w-[22px] sm:h-[22px]' aria-hidden />
+              </span>
+              <div className='flex flex-col min-w-0'>
+                <span className='text-white text-sm sm:text-base'>Patel Yagnik</span>
+                <a href='tel:+919925867065' className='text-[#adb6c0] text-sm hover:text-white transition-colors'>+91 9925867065</a>
+              </div>
+            </div>
+            <div className='flex items-start gap-3'>
+              <span className='p-1.5 sm:p-1 bg-white rounded-md shrink-0 mt-0.5'>
+                <Mail size={20} className='text-[#041d2d] sm:w-[22px] sm:h-[22px]' aria-hidden />
+              </span>
+              <a href='mailto:procureexport24@gmail.com' className='text-[#adb6c0] text-sm sm:text-base hover:text-white transition-colors break-all'>procureexport24@gmail.com</a>
+            </div>
+            <div className='flex items-start gap-3'>
+              <span className='p-1.5 sm:p-1 bg-white rounded-md shrink-0 mt-0.5'>
+                <MapPin size={20} className='text-[#041d2d] sm:w-[22px] sm:h-[22px]' aria-hidden />
+              </span>
+              <span className='text-[#adb6c0] text-sm sm:text-base leading-snug'>584, Patel Vas, First Line, Ralisana, Visnagar, Mahesana</span>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

@@ -11,12 +11,12 @@ export default function Home() {
   return (
     <div>
         {/* <HomeCarousle></HomeCarousle> */}
-        <Hero></Hero>
-        <About></About>
-        <Products></Products>
-        <ShowCase></ShowCase>
-        <Transaport></Transaport>
-        <Contact></Contact>
+         <Hero></Hero>
+         <About></About>
+         <Products></Products>
+         <ShowCase></ShowCase>
+         <Transaport></Transaport>
+         <Contact></Contact>
         <CertificateSlider></CertificateSlider>
     </div>
   );

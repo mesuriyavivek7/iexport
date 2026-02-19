@@ -1,5 +1,5 @@
 "use client"
-import React, {useRef} from 'react'
+import React, { useRef } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper/modules'
 import 'swiper/css'
@@ -10,59 +10,72 @@ import CertificateSlideCard from './certificate-slide-card'
 type Props = {}
 
 const CertificateSlider = (props: Props) => {
-
   const prevRef = useRef<HTMLButtonElement>(null)
   const nextRef = useRef<HTMLButtonElement>(null)
 
   return (
-    <div className='py-16 px-8'>
-    <section className='mx-auto max-w-6xl relative'>
-      <button ref={prevRef} className="absolute cursor-pointer hover:bg-black  top-1/2 left-0 -traslate-y-1/2 z-20 bg-black/40 text-white p-1 rounded-full transition duration-300">
-        <ChevronLeft size={22} />
-      </button>
+    <div className='py-10 px-4 sm:py-12 sm:px-6 md:py-16 md:px-8'>
+      <section className='relative mx-auto max-w-6xl pl-10 pr-10 sm:pl-12 sm:pr-12 md:pl-14 md:pr-14'>
+        <button
+          ref={prevRef}
+          type="button"
+          aria-label="Previous certificates"
+          className="absolute left-0 top-1/2 z-20 -translate-y-1/2 rounded-full bg-black/40 p-1.5 text-white transition duration-300 hover:bg-black sm:p-1"
+        >
+          <ChevronLeft size={20} className="sm:w-[22px] sm:h-[22px]" aria-hidden />
+        </button>
+        <button
+          ref={nextRef}
+          type="button"
+          aria-label="Next certificates"
+          className="absolute right-0 top-1/2 z-20 -translate-y-1/2 rounded-full bg-black/40 p-1.5 text-white transition duration-300 hover:bg-black sm:p-1"
+        >
+          <ChevronRight size={20} className="sm:w-[22px] sm:h-[22px]" aria-hidden />
+        </button>
 
-      <button ref={nextRef} className="absolute cursor-pointer hover:bg-black top-1/2 right-0 -traslate-y-1/2 z-20 bg-black/40 text-white p-1 rounded-full transition duration-300">
-        <ChevronRight size={22} />
-      </button>
-
-      <Swiper 
-      modules={[Navigation]}
-      spaceBetween={24}
-      slidesPerView={6}
-      onBeforeInit={(swiper) => {
-        // @ts-ignore
-        swiper.params.navigation.prevEl = prevRef.current
-        // @ts-ignore
-        swiper.params.navigation.nextEl = nextRef.current
-      }}
-      navigation={{
-        prevEl: prevRef.current,
-        nextEl: nextRef.current,
-      }}
-      breakpoints={{
-        0: {
-          slidesPerView: 1,
-        },
-        640: {
-          slidesPerView: 2,
-        },
-        1024: {
-          slidesPerView: 4,
-        },
-      }}
-      >
-       {
-        certificateSlides.map((cert)=>(
-           <SwiperSlide key={cert.id}>
-             <CertificateSlideCard
-               certificate={cert}
-             ></CertificateSlideCard>
-           </SwiperSlide>
-        ))
-       }
-      </Swiper>
-
-    </section>
+        <Swiper
+          modules={[Navigation]}
+          spaceBetween={12}
+          onBeforeInit={(swiper) => {
+            // @ts-ignore
+            swiper.params.navigation.prevEl = prevRef.current
+            // @ts-ignore
+            swiper.params.navigation.nextEl = nextRef.current
+          }}
+          navigation={{
+            prevEl: prevRef.current,
+            nextEl: nextRef.current,
+          }}
+          breakpoints={{
+            0: {
+              slidesPerView: 1,
+              spaceBetween: 16,
+            },
+            480: {
+              slidesPerView: 2,
+              spaceBetween: 16,
+            },
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 24,
+            },
+            1024: {
+              slidesPerView: 4,
+              spaceBetween: 24,
+            },
+          }}
+        >
+          {certificateSlides.map((cert) => (
+            <SwiperSlide key={cert.id}>
+              <CertificateSlideCard certificate={cert} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </section>
     </div>
   )
 }
