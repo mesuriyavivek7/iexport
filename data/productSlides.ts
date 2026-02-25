@@ -80,7 +80,7 @@ export const productSlides = [
     {
         id: 14,
         title:"Black Salt",
-        image:"/assets/amchur.jpeg",
+        image:"/assets/blacksalt.jpeg",
         category: 2
     },
     {
@@ -92,7 +92,7 @@ export const productSlides = [
     {
         id: 16,
         title:"Coriander Powder",
-        image:"/assets/corianderpowder.jpeg",
+        image:"/assets/coriander.jpeg",
         category: 2
     },
     {
@@ -104,7 +104,67 @@ export const productSlides = [
     {
         id: 18,
         title:"Drumstick Powder",
-        image:"/assets/garlic.jpeg",
+        image:"/assets/drumstick.jpeg",
+        category: 2
+    },
+    {
+        id: 19,
+        title:"Coriander Seeds",
+        image:"/assets/corianderpowder.jpeg",
+        category: 2
+    },
+    {
+        id: 20,
+        title:"Chilli Powder",
+        image:"/assets/chilli.jpeg",
+        category: 2
+    },
+    {
+        id: 21,
+        title:"Turmeric Powder",
+        image:"/assets/turmeric.jpeg",
+        category: 2
+    },
+    {
+        id: 22,
+        title:"Cinnamon",
+        image:"/assets/cinaamon.jpeg",
+        category: 2
+    },
+    {
+        id: 23,
+        title:"Cloves",
+        image:"/assets/cloves.jpeg",
+        category: 2
+    },
+    {
+        id: 24,
+        title:"Black Pepper",
+        image:"/assets/blackpaper.jpeg",
+        category: 2
+    },
+    {
+        id: 25,
+        title:"Cardamon",
+        image:"/assets/cardamon.jpeg",
+        category: 2
+    },
+    {
+        id: 26,
+        title:"BYADGI CHILLI (KASHMIRI CHILLI)",
+        image:"/assets/byadgi.jpeg",
+        category: 2
+    },
+    {
+        id: 27,
+        title:"FINGER TURMERIC",
+        image:"/assets/finger.jpeg",
+        category: 2
+    },
+    {
+        id: 28,
+        title:"JAVITRI (ARIL)",
+        image:"/assets/javitri.jpeg",
         category: 2
     }
 ]
