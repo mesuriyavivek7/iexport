@@ -166,6 +166,60 @@ export const productSlides = [
         title:"JAVITRI (ARIL)",
         image:"/assets/javitri.jpeg",
         category: 2
+    },
+    {
+        id: 29,
+        title:"Blanched Peanuts",
+        image:"/assets/blanched.jpeg",
+        category: 1
+    },
+    {
+        id: 30,
+        title:"Diced Peanuts",
+        image:"/assets/diced.jpeg",
+        category: 1   
+    },
+    {
+        id: 31,
+        title:"Peanuts Butter",
+        image:"/assets/peanutsbutter.jpeg",
+        category: 1   
+    },
+    {
+        id: 32,
+        title:"Peanuts Oil",
+        image:"/assets/peanutsoil.jpeg",
+        category: 1  
+    },
+    {
+        id: 33,
+        title:"Peanut Powder",
+        image:"/assets/peanutpowder.jpeg",
+        category: 1  
+    },
+    {
+        id: 34,
+        title:"Peanut in Shell",
+        image:"/assets/shell.jpeg",
+        category: 1  
+    },
+    {
+        id: 35,
+        title:"Raw Peanut",
+        image:"/assets/rawpeanut.jpeg",
+        category: 1  
+    },
+    {
+        id: 36,
+        title:"Roasted Peanut",
+        image:"/assets/roasted.jpeg",
+        category: 1 
+    },
+    {
+        id: 37,
+        title:"Aggregate",
+        image:"/assets/aggregate.jpeg",
+        category: 5 
     }
 ]
 
