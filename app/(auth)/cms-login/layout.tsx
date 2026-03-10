@@ -9,7 +9,6 @@ const inter = Inter({
 type Props = {
   children: React.ReactNode
 }
-
 const Layout = ({ children }: Props) => {
   return (
     <main className={inter.className}>
@@ -19,3 +18,4 @@ const Layout = ({ children }: Props) => {
 }
 
 export default Layout
+

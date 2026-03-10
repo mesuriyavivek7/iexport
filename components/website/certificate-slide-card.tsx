@@ -1,8 +1,12 @@
 import React from 'react'
-import { Certificate } from '@/data/certificateSlides'
 import Image from 'next/image'
 
-const CertificateSlideCard = ({ certificate }: { certificate: Certificate }) => {
+export interface CertificateSlideItem {
+  id: string | number
+  image: string
+}
+
+const CertificateSlideCard = ({ certificate }: { certificate: CertificateSlideItem }) => {
   return (
     <div className="flex w-full aspect-[55/35] items-center justify-center bg-white sm:aspect-auto sm:h-35 sm:w-55">
       <div className="relative h-full w-full">
@@ -12,6 +16,7 @@ const CertificateSlideCard = ({ certificate }: { certificate: Certificate }) => 
           fill
           className="object-contain"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+          unoptimized={certificate.image.startsWith('http')}
         />
       </div>
     </div>

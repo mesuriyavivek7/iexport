@@ -1,15 +1,27 @@
 "use client"
-import React, {useRef} from 'react'
+import React, { useRef } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper/modules'
 import 'swiper/css'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { categories } from '@/data/category'
+import { categories as staticCategories } from '@/data/category'
 import CategoryCard from './category-card'
 
-const ProductSlider = () => {
+export interface CategoryForSlider {
+  _id: string
+  name: string
+  image: string
+  productCount?: number
+}
+
+const ProductSlider = ({ categories }: { categories?: CategoryForSlider[] | null }) => {
   const prevRef = useRef<HTMLButtonElement>(null)
   const nextRef = useRef<HTMLButtonElement>(null)
+  const list =
+    Array.isArray(categories) && categories.length > 0
+      ? categories.map((c) => ({ id: c._id, title: c.name, image: c.image }))
+      : staticCategories
+
   return (
     <section className="relative py-8 px-8">
       {/* Custom arrows */}
@@ -47,9 +59,9 @@ const ProductSlider = () => {
           },
         }}
       >
-        {categories.map((category) => (
+        {list.map((category) => (
           <SwiperSlide key={category.id}>
-            <CategoryCard category={category}></CategoryCard>
+            <CategoryCard category={category} />
           </SwiperSlide>
         ))}
       </Swiper>

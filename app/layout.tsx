@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { SessionProvider } from "@/components/providers/session-provider";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "Procure Export - International trade",
@@ -19,9 +21,15 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;500;700&display=swap"
         />
+        {/* eslint-disable-next-line @next/next/no-page-custom-font -- Inter for admin panel */}
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+        />
       </head>
       <body>
-        {children}
+        <SessionProvider>{children}</SessionProvider>
+        <Toaster />
       </body>
     </html>
   );

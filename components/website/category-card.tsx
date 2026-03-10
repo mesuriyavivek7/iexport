@@ -1,9 +1,14 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { category } from '@/data/category'
 
-const CategoryCard = ({ category }: { category: category }) => {
+export interface CategoryCardItem {
+  id: string | number
+  title: string
+  image: string
+}
+
+const CategoryCard = ({ category }: { category: CategoryCardItem }) => {
   return (
     <Link href={`/categories/${category.id}`}>
       <div className="bg-white overflow-hidden relative cursor-pointer rounded-xl shadow border hover:shadow-xl duration-300 transition p-4">
@@ -13,6 +18,7 @@ const CategoryCard = ({ category }: { category: category }) => {
         alt={category.title}
         fill
         className="object-cover rounded-lg"
+        unoptimized={category.image.startsWith('http')}
       />
      </div>
 

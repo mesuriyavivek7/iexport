@@ -52,6 +52,7 @@
   --color-primary-blue-hover: #0b4a6f;
   --color-primary-purple: #5850f2;
   --color-primary-purple-hover:#6862f3;
+  --color-primary-background: #f2f3f5;
   --box-shadow-default: 0px 0px 5px 1px rgba(0,0,0,0.4);
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -156,4 +157,8 @@
 
 .font-roboto-condensed {
   font-family: 'Roboto Condensed', sans-serif;
+}
+
+.font-inter {
+  font-family: 'Inter', sans-serif;
 }

@@ -7,9 +7,17 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { certificateSlides } from '@/data/certificateSlides'
 import CertificateSlideCard from './certificate-slide-card'
 
-const CertificateSlider = () => {
+export interface CertificateSliderProps {
+  certificates?: { _id: string; image: string }[]
+}
+
+const CertificateSlider = ({ certificates }: CertificateSliderProps) => {
   const prevRef = useRef<HTMLButtonElement>(null)
   const nextRef = useRef<HTMLButtonElement>(null)
+  const slides =
+    Array.isArray(certificates) && certificates.length > 0
+      ? certificates.map((c) => ({ id: c._id, image: c.image }))
+      : certificateSlides
 
   return (
     <div className='py-10 px-4 sm:py-12 sm:px-6 md:py-16 md:px-8'>
@@ -67,7 +75,7 @@ const CertificateSlider = () => {
             },
           }}
         >
-          {certificateSlides.map((cert) => (
+          {slides.map((cert) => (
             <SwiperSlide key={cert.id}>
               <CertificateSlideCard certificate={cert} />
             </SwiperSlide>

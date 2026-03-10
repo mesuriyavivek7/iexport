@@ -2,9 +2,32 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin, Instagram, Linkedin, Facebook } from 'lucide-react'
 
-const Footer = () => {
+export interface FooterContactData {
+  contactPersons: { name: string; mobileNo: string }[]
+  email: string
+  points?: string[]
+  socialLinks?: { instagram?: string; linkedin?: string; facebook?: string }
+}
+
+const defaultContactPersons = [
+  { name: 'Patel Jainish', mobileNo: '+91 6355007570' },
+  { name: 'Patel Yagnik', mobileNo: '+91 9925867065' },
+]
+const defaultEmail = 'procureexport24@gmail.com'
+const defaultAddress = '584, Patel Vas, First Line, Ralisana, Visnagar, Mahesana'
+
+function telLink(mobileNo: string) {
+  return `tel:${mobileNo.replace(/\s/g, '')}`
+}
+
+const Footer = ({ data }: { data?: FooterContactData | null }) => {
+  const persons = data?.contactPersons?.length ? data.contactPersons : defaultContactPersons
+  const email = data?.email || defaultEmail
+  const address = defaultAddress
+  const social = data?.socialLinks
+
   return (
     <div className='bg-[#041d2d] px-4 py-10 sm:px-6 sm:py-12 md:px-8 md:py-16'>
       <section className='mx-auto max-w-6xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 items-start gap-10 sm:gap-12 lg:gap-16'>
@@ -22,6 +45,25 @@ const Footer = () => {
             quality products globally with a commitment to freshness,
             reliability, and customer satisfaction
           </p>
+          {(social?.instagram || social?.linkedin || social?.facebook) && (
+            <div className='flex items-center gap-3'>
+              {social.instagram && (
+                <a href={social.instagram} target='_blank' rel='noopener noreferrer' className='text-[#adb6c0] hover:text-white transition-colors' aria-label='Instagram'>
+                  <Instagram size={22} />
+                </a>
+              )}
+              {social.linkedin && (
+                <a href={social.linkedin} target='_blank' rel='noopener noreferrer' className='text-[#adb6c0] hover:text-white transition-colors' aria-label='LinkedIn'>
+                  <Linkedin size={22} />
+                </a>
+              )}
+              {social.facebook && (
+                <a href={social.facebook} target='_blank' rel='noopener noreferrer' className='text-[#adb6c0] hover:text-white transition-colors' aria-label='Facebook'>
+                  <Facebook size={22} />
+                </a>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Our expertise */}
@@ -60,35 +102,28 @@ const Footer = () => {
             <hr className='h-1 border-none mt-3 sm:mt-4 w-full bg-[#2c3d4f]'/>
           </h2>
           <div className='flex mt-3 sm:mt-4 flex-col gap-4 sm:gap-6'>
-            <div className='flex items-center gap-3'>
-              <span className='p-1.5 sm:p-1 bg-white rounded-md shrink-0'>
-                <Phone size={20} className='text-[#041d2d] sm:w-[22px] sm:h-[22px]' aria-hidden />
-              </span>
-              <div className='flex flex-col min-w-0'>
-                <span className='text-white text-sm sm:text-base'>Patel Jainish</span>
-                <a href='tel:+916355007570' className='text-[#adb6c0] text-sm hover:text-white transition-colors'>+91 6355007570</a>
+            {persons.map((p) => (
+              <div key={p.name} className='flex items-center gap-3'>
+                <span className='p-1.5 sm:p-1 bg-white rounded-md shrink-0'>
+                  <Phone size={20} className='text-[#041d2d] sm:w-[22px] sm:h-[22px]' aria-hidden />
+                </span>
+                <div className='flex flex-col min-w-0'>
+                  <span className='text-white text-sm sm:text-base'>{p.name}</span>
+                  <a href={telLink(p.mobileNo)} className='text-[#adb6c0] text-sm hover:text-white transition-colors'>{p.mobileNo}</a>
+                </div>
               </div>
-            </div>
-            <div className='flex items-center gap-3'>
-              <span className='p-1.5 sm:p-1 bg-white rounded-md shrink-0'>
-                <Phone size={20} className='text-[#041d2d] sm:w-[22px] sm:h-[22px]' aria-hidden />
-              </span>
-              <div className='flex flex-col min-w-0'>
-                <span className='text-white text-sm sm:text-base'>Patel Yagnik</span>
-                <a href='tel:+919925867065' className='text-[#adb6c0] text-sm hover:text-white transition-colors'>+91 9925867065</a>
-              </div>
-            </div>
+            ))}
             <div className='flex items-start gap-3'>
               <span className='p-1.5 sm:p-1 bg-white rounded-md shrink-0 mt-0.5'>
                 <Mail size={20} className='text-[#041d2d] sm:w-[22px] sm:h-[22px]' aria-hidden />
               </span>
-              <a href='mailto:procureexport24@gmail.com' className='text-[#adb6c0] text-sm sm:text-base hover:text-white transition-colors break-all'>procureexport24@gmail.com</a>
+              <a href={`mailto:${email}`} className='text-[#adb6c0] text-sm sm:text-base hover:text-white transition-colors break-all'>{email}</a>
             </div>
             <div className='flex items-start gap-3'>
               <span className='p-1.5 sm:p-1 bg-white rounded-md shrink-0 mt-0.5'>
                 <MapPin size={20} className='text-[#041d2d] sm:w-[22px] sm:h-[22px]' aria-hidden />
               </span>
-              <span className='text-[#adb6c0] text-sm sm:text-base leading-snug'>584, Patel Vas, First Line, Ralisana, Visnagar, Mahesana</span>
+              <span className='text-[#adb6c0] text-sm sm:text-base leading-snug'>{address}</span>
             </div>
           </div>
         </div>
