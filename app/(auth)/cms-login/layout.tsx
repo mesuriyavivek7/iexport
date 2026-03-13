@@ -11,7 +11,7 @@ type Props = {
 }
 const Layout = ({ children }: Props) => {
   return (
-    <main className={inter.className}>
+    <main className={`${inter.className} min-h-dvh w-full antialiased`}>
       {children}
     </main>
   )
