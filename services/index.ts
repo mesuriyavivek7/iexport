@@ -87,3 +87,9 @@ export {
   type LeadItem,
   type LeadsListResponse,
 } from "./leads.service"
+export {
+  getAnalyticsDashboard,
+  type AnalyticsDashboardData,
+  type MonthlyViewsItem,
+  type CountryViewsItem,
+} from "./analytics.service"

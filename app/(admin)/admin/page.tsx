@@ -2,48 +2,55 @@ import React from "react"
 import { Eye, Package, FolderTree, Users } from "lucide-react"
 import { MonthlyViewsChart } from "@/components/cms/monthly-views-chart"
 import { CountryViewsList } from "@/components/cms/country-views-list"
+import { getAnalyticsDashboard } from "@/services"
 import { cn } from "@/lib/utils"
 
-const stats = [
+const STAT_CARD_CONFIG = [
   {
+    key: "views" as const,
     label: "Total Views",
-    value: "12.5K",
-    change: "+4.2%",
-    trend: "up" as const,
     icon: Eye,
     iconBg: "bg-emerald-500/15",
     iconColor: "text-emerald-600",
   },
   {
+    key: "products" as const,
     label: "Total Products",
-    value: "48",
-    change: "+2",
-    trend: "up" as const,
     icon: Package,
     iconBg: "bg-[var(--color-primary-purple)]/15",
     iconColor: "text-[var(--color-primary-purple)]",
   },
   {
+    key: "categories" as const,
     label: "Total Categories",
-    value: "6",
-    change: "0%",
-    trend: "neutral" as const,
     icon: FolderTree,
     iconBg: "bg-amber-500/15",
     iconColor: "text-amber-600",
   },
   {
+    key: "leads" as const,
     label: "Total Leads",
-    value: "156",
-    change: "-1.2%",
-    trend: "down" as const,
     icon: Users,
     iconBg: "bg-blue-500/15",
     iconColor: "text-blue-600",
   },
-]
+] as const
 
-export default function AdminPage() {
+export default async function AdminPage() {
+  const analytics = await getAnalyticsDashboard()
+
+  const totalViews = analytics?.totalViews ?? 0
+  const totalProducts = analytics?.totalProducts ?? 0
+  const totalCategories = analytics?.totalCategories ?? 0
+  const totalLeads = analytics?.totalLeads ?? 0
+
+  const statValues = {
+    views: totalViews.toLocaleString(),
+    products: String(totalProducts),
+    categories: String(totalCategories),
+    leads: String(totalLeads),
+  }
+
   return (
     <div className="space-y-6">
       <div>
@@ -55,11 +62,11 @@ export default function AdminPage() {
 
       {/* 4 stat cards */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {stats.map((item) => {
+        {STAT_CARD_CONFIG.map((item) => {
           const Icon = item.icon
           return (
             <div
-              key={item.label}
+              key={item.key}
               className="rounded-xl border border-border bg-card p-5 shadow-sm"
             >
               <div className="flex items-start justify-between gap-3">
@@ -72,20 +79,10 @@ export default function AdminPage() {
                 >
                   <Icon className="size-5" />
                 </div>
-                <span
-                  className={cn(
-                    "text-xs font-medium tabular-nums",
-                    item.trend === "up" && "text-emerald-600",
-                    item.trend === "down" && "text-red-600",
-                    item.trend === "neutral" && "text-muted-foreground"
-                  )}
-                >
-                  {item.change}
-                  {item.trend === "up" && " ↑"}
-                  {item.trend === "down" && " ↓"}
-                </span>
               </div>
-              <p className="mt-3 text-2xl font-bold text-foreground">{item.value}</p>
+              <p className="mt-3 text-2xl font-bold text-foreground tabular-nums">
+                {statValues[item.key]}
+              </p>
               <p className="mt-0.5 text-sm text-muted-foreground">{item.label}</p>
             </div>
           )
@@ -96,11 +93,19 @@ export default function AdminPage() {
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <div className="rounded-xl border border-border bg-card p-5 shadow-sm lg:col-span-2">
           <div className="flex items-center justify-between">
-            <h3 className="font-semibold text-foreground">Website views (monthly)</h3>
+            <h3 className="font-semibold text-foreground">
+              Website views (monthly)
+            </h3>
             <span className="text-xs text-muted-foreground">Monthly</span>
           </div>
           <div className="mt-4">
-            <MonthlyViewsChart />
+            <MonthlyViewsChart
+              data={
+                analytics?.monthlyViews?.length
+                  ? analytics.monthlyViews
+                  : undefined
+              }
+            />
           </div>
         </div>
         <div className="rounded-xl border border-border bg-card p-5 shadow-sm">
@@ -109,7 +114,13 @@ export default function AdminPage() {
             Most traffic by country
           </p>
           <div className="mt-5">
-            <CountryViewsList />
+            <CountryViewsList
+              data={
+                analytics?.countryViews?.length
+                  ? analytics.countryViews
+                  : undefined
+              }
+            />
           </div>
         </div>
       </div>
