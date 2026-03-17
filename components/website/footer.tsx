@@ -102,7 +102,9 @@ const Footer = ({ data }: { data?: FooterContactData | null }) => {
             <hr className='h-1 border-none mt-3 sm:mt-4 w-full bg-[#2c3d4f]'/>
           </h2>
           <div className='flex mt-3 sm:mt-4 flex-col gap-4 sm:gap-6'>
-            {persons.map((p) => (
+            {persons.map((p) => {
+              if (p.name && p.mobileNo) {
+              return (
               <div key={p.name} className='flex items-center gap-3'>
                 <span className='p-1.5 sm:p-1 bg-white rounded-md shrink-0'>
                   <Phone size={20} className='text-[#041d2d] sm:w-[22px] sm:h-[22px]' aria-hidden />
@@ -112,7 +114,9 @@ const Footer = ({ data }: { data?: FooterContactData | null }) => {
                   <a href={telLink(p.mobileNo)} className='text-[#adb6c0] text-sm hover:text-white transition-colors'>{p.mobileNo}</a>
                 </div>
               </div>
-            ))}
+              )
+              }
+             })}
             <div className='flex items-start gap-3'>
               <span className='p-1.5 sm:p-1 bg-white rounded-md shrink-0 mt-0.5'>
                 <Mail size={20} className='text-[#041d2d] sm:w-[22px] sm:h-[22px]' aria-hidden />

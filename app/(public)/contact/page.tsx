@@ -84,28 +84,32 @@ export default async function ContactPage() {
                   You can also contact us via
                 </h2>
                 <div className='flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-12'>
-                  {persons.map((p) => (
-                    <div
-                      key={p.name}
-                      className='flex items-center gap-3 sm:gap-4'
-                    >
-                      <span
-                        className='border border-(--color-primary-blue) p-2 rounded-full shrink-0'
-                        aria-hidden
-                      >
-                        <Phone size={20} className='sm:w-5 sm:h-5' />
-                      </span>
-                      <div className='flex flex-col min-w-0'>
-                        <h4 className='font-medium text-sm'>{p.name}</h4>
-                        <a
-                          href={telLink(p.mobileNo)}
-                          className='text-sm text-foreground hover:text-primary'
+                  {persons.map((p) => {
+                    if (p.name && p.mobileNo) {
+                      return (
+                       <div
+                        key={p.name}
+                        className='flex items-center gap-3 sm:gap-4'
+                       >
+                        <span
+                          className='border border-(--color-primary-blue) p-2 rounded-full shrink-0'
+                          aria-hidden
                         >
-                          {p.mobileNo}
-                        </a>
+                          <Phone size={20} className='sm:w-5 sm:h-5' />
+                        </span>
+                        <div className='flex flex-col min-w-0'>
+                          <h4 className='font-medium text-sm'>{p.name}</h4>
+                          <a
+                            href={telLink(p.mobileNo)}
+                            className='text-sm text-foreground hover:text-primary'
+                          >
+                            {p.mobileNo}
+                         </a>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    )
+                  }
+                 })}
                 </div>
                 <div className='flex items-start gap-3 sm:gap-4'>
                   <span
