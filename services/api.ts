@@ -3,7 +3,7 @@
  * Browser / admin CMS use lib/http-client.ts with NEXT_PUBLIC_BACKEND_URL.
  */
 const getBaseUrl = () =>
-  process.env.BACKEND_URL ?? process.env.NEXT_PUBLIC_BACKEND_URL ?? "http://localhost:5020"
+  process.env.BACKEND_URL ?? process.env.NEXT_PUBLIC_BACKEND_URL ?? "https://api.procureexport.com"
 
 export function apiUrl(path: string): string {
   const base = getBaseUrl().replace(/\/$/, "")

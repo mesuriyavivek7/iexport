@@ -4,7 +4,7 @@
  */
 
 const getBaseUrl = () =>
-  process.env.NEXT_PUBLIC_BACKEND_URL ?? "http://localhost:5020"
+  process.env.NEXT_PUBLIC_BACKEND_URL ?? "https://api.procureexport.com"
 
 interface HttpResult<T> {
   data: T
