@@ -1,3 +1,5 @@
+import { httpClient } from "@/lib/http-client"
+
 export interface AboutHomeData {
   _id: string
   aboutImage: string
@@ -14,26 +16,16 @@ export interface AboutHomeResponse {
   data: AboutHomeData
 }
 
-/** GET about home content (call from client: fetch /api/about/home) */
 export async function getAboutHome(): Promise<AboutHomeData | null> {
-  const res = await fetch("/api/about/home", { cache: "no-store" })
-  if (!res.ok) return null
-  const json = (await res.json()) as AboutHomeResponse
-  if (!json?.success || !json?.data) return null
-  return json.data
+  const { data, ok } = await httpClient<AboutHomeResponse>("/api/about/home")
+  if (!ok || !data?.success || !data?.data) return null
+  return data.data
 }
 
-/** PUT about home content (call from client: FormData with heading, subheading, contentParagraph1, contentParagraph2, aboutImage?) */
-export async function updateAboutHome(
-  formData: FormData
-): Promise<{ success: boolean; error?: string }> {
-  const res = await fetch("/api/about/home", {
-    method: "PUT",
-    body: formData,
-  })
-  const json = (await res.json().catch(() => ({}))) as { success?: boolean; message?: string }
-  if (!res.ok) {
-    return { success: false, error: json?.message ?? "Failed to update about section" }
-  }
-  return { success: json?.success ?? true }
+export async function updateAboutHome(formData: FormData): Promise<void> {
+  const { data, ok } = await httpClient<{ success?: boolean; message?: string }>(
+    "/api/about/home",
+    { method: "PUT", body: formData }
+  )
+  if (!ok) throw new Error(data?.message ?? "Failed to update about section")
 }

@@ -1,3 +1,5 @@
+import { httpClient } from "@/lib/http-client"
+
 export interface AboutPageData {
   _id: string
   bannerHeading: string
@@ -21,26 +23,16 @@ export interface AboutPageResponse {
   data?: AboutPageData
 }
 
-/** GET about page content (call from client: fetch /api/about/page) */
 export async function getAboutPage(): Promise<AboutPageData | null> {
-  const res = await fetch("/api/about/page", { cache: "no-store" })
-  if (!res.ok) return null
-  const json = (await res.json()) as AboutPageResponse
-  if (!json?.success || !json?.data) return null
-  return json.data
+  const { data, ok } = await httpClient<AboutPageResponse>("/api/about/page")
+  if (!ok || !data?.success || !data?.data) return null
+  return data.data
 }
 
-/** PUT about page (call from client: FormData with all text fields + sectionImage?) */
-export async function updateAboutPage(
-  formData: FormData
-): Promise<{ success: boolean; error?: string }> {
-  const res = await fetch("/api/about/page", {
-    method: "PUT",
-    body: formData,
-  })
-  const json = (await res.json().catch(() => ({}))) as { success?: boolean; message?: string }
-  if (!res.ok) {
-    return { success: false, error: json?.message ?? "Failed to update about page" }
-  }
-  return { success: json?.success ?? true }
+export async function updateAboutPage(formData: FormData): Promise<void> {
+  const { data, ok } = await httpClient<{ success?: boolean; message?: string }>(
+    "/api/about/page",
+    { method: "PUT", body: formData }
+  )
+  if (!ok) throw new Error(data?.message ?? "Failed to update about page")
 }

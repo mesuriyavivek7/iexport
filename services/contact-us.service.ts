@@ -1,3 +1,5 @@
+import { httpClient } from "@/lib/http-client"
+
 export interface ContactPerson {
   name: string
   mobileNo: string
@@ -24,32 +26,18 @@ export interface ContactUsResponse {
   data?: ContactUsData
 }
 
-export type ContactUsPayload = Omit<
-  ContactUsData,
-  "_id" | "createdAt" | "updatedAt"
->
+export type ContactUsPayload = Omit<ContactUsData, "_id" | "createdAt" | "updatedAt">
 
-/** GET contact us (call from client: fetch /api/contact-us) */
 export async function getContactUs(): Promise<ContactUsData | null> {
-  const res = await fetch("/api/contact-us", { cache: "no-store" })
-  if (!res.ok) return null
-  const json = (await res.json()) as ContactUsResponse
-  if (!json?.success || !json?.data) return null
-  return json.data
+  const { data, ok } = await httpClient<ContactUsResponse>("/api/contact-us")
+  if (!ok || !data?.success || !data?.data) return null
+  return data.data
 }
 
-/** PUT contact us (JSON body) */
-export async function updateContactUs(
-  payload: ContactUsPayload
-): Promise<{ success: boolean; error?: string }> {
-  const res = await fetch("/api/contact-us", {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  })
-  const data = (await res.json().catch(() => ({}))) as { success?: boolean; message?: string }
-  if (!res.ok) {
-    return { success: false, error: data?.message ?? "Failed to update contact us" }
-  }
-  return { success: data?.success ?? true }
+export async function updateContactUs(payload: ContactUsPayload): Promise<void> {
+  const { data, ok } = await httpClient<{ success?: boolean; message?: string }>(
+    "/api/contact-us",
+    { method: "PUT", body: JSON.stringify(payload) }
+  )
+  if (!ok) throw new Error(data?.message ?? "Failed to update contact us")
 }

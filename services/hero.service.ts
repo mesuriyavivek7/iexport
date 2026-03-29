@@ -1,3 +1,5 @@
+import { httpClient } from "@/lib/http-client"
+
 export interface HeroData {
   _id: string
   heroImage: string
@@ -13,24 +15,16 @@ export interface HeroResponse {
   data: HeroData
 }
 
-/** GET hero content (call from client: fetch /api/hero) */
 export async function getHero(): Promise<HeroData | null> {
-  const res = await fetch("/api/hero", { cache: "no-store" })
-  if (!res.ok) return null
-  const json = (await res.json()) as HeroResponse
-  if (!json?.success || !json?.data) return null
-  return json.data
+  const { data, ok } = await httpClient<HeroResponse>("/api/hero")
+  if (!ok || !data?.success || !data?.data) return null
+  return data.data
 }
 
-/** PUT hero content (call from client: FormData with heading, subheading, tags, heroImage?) */
-export async function updateHero(formData: FormData): Promise<{ success: boolean; error?: string }> {
-  const res = await fetch("/api/hero", {
-    method: "PUT",
-    body: formData,
-  })
-  const json = (await res.json().catch(() => ({}))) as { success?: boolean; message?: string }
-  if (!res.ok) {
-    return { success: false, error: json?.message ?? "Failed to update hero" }
-  }
-  return { success: json?.success ?? true }
+export async function updateHero(formData: FormData): Promise<void> {
+  const { data, ok } = await httpClient<{ success?: boolean; message?: string }>(
+    "/api/hero",
+    { method: "PUT", body: formData }
+  )
+  if (!ok) throw new Error(data?.message ?? "Failed to update hero")
 }

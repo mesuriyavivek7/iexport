@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
+import { QueryProvider } from "@/components/providers/query-provider";
 import { SessionProvider } from "@/components/providers/session-provider";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -43,7 +44,9 @@ export default function RootLayout({
             gtag('config', '${GA_ID}');
           `}
         </Script>
-        <SessionProvider>{children}</SessionProvider>
+        <QueryProvider>
+          <SessionProvider>{children}</SessionProvider>
+        </QueryProvider>
         <Toaster />
       </body>
     </html>

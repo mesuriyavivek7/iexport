@@ -1,3 +1,5 @@
+import { httpClient } from "@/lib/http-client"
+
 export interface CertificateItem {
   _id: string
   image: string
@@ -10,38 +12,24 @@ export interface CertificatesListResponse {
   data?: CertificateItem[]
 }
 
-/** GET all certificates (call from client: fetch /api/certificates) */
 export async function getCertificates(): Promise<CertificateItem[]> {
-  const res = await fetch("/api/certificates", { cache: "no-store" })
-  if (!res.ok) return []
-  const json = (await res.json()) as CertificatesListResponse
-  const data = json?.data
-  return Array.isArray(data) ? data : []
+  const { data, ok } = await httpClient<CertificatesListResponse>("/api/certificates")
+  if (!ok) return []
+  return Array.isArray(data?.data) ? data.data : []
 }
 
-/** POST create certificate (FormData: image) */
-export async function createCertificate(
-  formData: FormData
-): Promise<{ success: boolean; error?: string }> {
-  const res = await fetch("/api/certificates", {
-    method: "POST",
-    body: formData,
-  })
-  const data = (await res.json().catch(() => ({}))) as { success?: boolean; message?: string }
-  if (!res.ok) {
-    return { success: false, error: data?.message ?? "Failed to create certificate" }
-  }
-  return { success: data?.success ?? true }
+export async function createCertificate(formData: FormData): Promise<void> {
+  const { data, ok } = await httpClient<{ success?: boolean; message?: string }>(
+    "/api/certificates",
+    { method: "POST", body: formData }
+  )
+  if (!ok) throw new Error(data?.message ?? "Failed to create certificate")
 }
 
-/** DELETE certificate */
-export async function deleteCertificate(
-  id: string
-): Promise<{ success: boolean; error?: string }> {
-  const res = await fetch(`/api/certificates/${id}`, { method: "DELETE" })
-  const data = (await res.json().catch(() => ({}))) as { success?: boolean; message?: string }
-  if (!res.ok) {
-    return { success: false, error: data?.message ?? "Failed to delete certificate" }
-  }
-  return { success: data?.success ?? true }
+export async function deleteCertificate(id: string): Promise<void> {
+  const { data, ok } = await httpClient<{ success?: boolean; message?: string }>(
+    `/api/certificates/${id}`,
+    { method: "DELETE" }
+  )
+  if (!ok) throw new Error(data?.message ?? "Failed to delete certificate")
 }

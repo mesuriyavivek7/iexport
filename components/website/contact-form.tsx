@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { toast } from 'sonner'
+import { submitLead } from '@/services'
 
 export default function ContactForm() {
   const [name, setName] = useState('')
@@ -21,26 +22,18 @@ export default function ContactForm() {
     }
     setSubmitting(true)
     try {
-      const res = await fetch('/api/leads', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: trimmedName,
-          email: trimmedEmail,
-          message: trimmedMessage,
-        }),
+      await submitLead({
+        name: trimmedName,
+        email: trimmedEmail,
+        message: trimmedMessage,
       })
-      const data = (await res.json().catch(() => ({}))) as { success?: boolean; message?: string }
-      if (!res.ok) {
-        toast.error(data?.message ?? 'Failed to send your inquiry.')
-        return
-      }
       toast.success('Your inquiry has been sent. We will get back to you shortly.')
       setName('')
       setEmail('')
       setMessage('')
-    } catch {
-      toast.error('Something went wrong. Please try again.')
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Something went wrong. Please try again.'
+      toast.error(message)
     } finally {
       setSubmitting(false)
     }

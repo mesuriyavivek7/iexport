@@ -1,4 +1,4 @@
-import { apiFetch } from "./api"
+import { httpClient } from "@/lib/http-client"
 
 export interface MonthlyViewsItem {
   month: string
@@ -26,11 +26,9 @@ interface AnalyticsDashboardResponse {
 }
 
 export async function getAnalyticsDashboard(): Promise<AnalyticsDashboardData | null> {
-  const { data, ok } = await apiFetch<AnalyticsDashboardResponse>(
+  const { data, ok } = await httpClient<AnalyticsDashboardResponse>(
     "/api/analytics/dashboard"
   )
-  if (!ok || !data?.success || !data?.data) {
-    return null
-  }
+  if (!ok || !data?.success || !data?.data) return null
   return data.data
 }

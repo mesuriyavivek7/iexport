@@ -1,3 +1,5 @@
+import { httpClient } from "@/lib/http-client"
+
 export interface ProductCategoryRef {
   _id: string
   name: string
@@ -18,52 +20,41 @@ export interface ProductsListResponse {
   data?: ProductItem[]
 }
 
-/** GET all products (call from client: fetch /api/products) */
 export async function getProducts(): Promise<ProductItem[]> {
-  const res = await fetch("/api/products", { cache: "no-store" })
-  if (!res.ok) return []
-  const json = (await res.json()) as ProductsListResponse
-  const data = json?.data
-  return Array.isArray(data) ? data : []
+  const { data, ok } = await httpClient<ProductsListResponse>("/api/products")
+  if (!ok) return []
+  return Array.isArray(data?.data) ? data.data : []
 }
 
-/** POST create product (FormData: name, image, category) */
-export async function createProduct(
-  formData: FormData
-): Promise<{ success: boolean; error?: string }> {
-  const res = await fetch("/api/products", {
-    method: "POST",
-    body: formData,
-  })
-  const data = (await res.json().catch(() => ({}))) as { success?: boolean; message?: string }
-  if (!res.ok) {
-    return { success: false, error: data?.message ?? "Failed to create product" }
-  }
-  return { success: data?.success ?? true }
+/** Products for a single category (public category detail page). */
+export async function getProductsByCategory(categoryId: string): Promise<ProductItem[]> {
+  const { data, ok } = await httpClient<ProductsListResponse>(
+    `/api/products/category/${categoryId}`
+  )
+  if (!ok) return []
+  return Array.isArray(data?.data) ? data.data : []
 }
 
-/** PUT update product (FormData: name, image?, category?) */
-export async function updateProduct(
-  id: string,
-  formData: FormData
-): Promise<{ success: boolean; error?: string }> {
-  const res = await fetch(`/api/products/${id}`, {
-    method: "PUT",
-    body: formData,
-  })
-  const data = (await res.json().catch(() => ({}))) as { success?: boolean; message?: string }
-  if (!res.ok) {
-    return { success: false, error: data?.message ?? "Failed to update product" }
-  }
-  return { success: data?.success ?? true }
+export async function createProduct(formData: FormData): Promise<void> {
+  const { data, ok } = await httpClient<{ success?: boolean; message?: string }>(
+    "/api/products",
+    { method: "POST", body: formData }
+  )
+  if (!ok) throw new Error(data?.message ?? "Failed to create product")
 }
 
-/** DELETE product */
-export async function deleteProduct(id: string): Promise<{ success: boolean; error?: string }> {
-  const res = await fetch(`/api/products/${id}`, { method: "DELETE" })
-  const data = (await res.json().catch(() => ({}))) as { success?: boolean; message?: string }
-  if (!res.ok) {
-    return { success: false, error: data?.message ?? "Failed to delete product" }
-  }
-  return { success: data?.success ?? true }
+export async function updateProduct(id: string, formData: FormData): Promise<void> {
+  const { data, ok } = await httpClient<{ success?: boolean; message?: string }>(
+    `/api/products/${id}`,
+    { method: "PUT", body: formData }
+  )
+  if (!ok) throw new Error(data?.message ?? "Failed to update product")
+}
+
+export async function deleteProduct(id: string): Promise<void> {
+  const { data, ok } = await httpClient<{ success?: boolean; message?: string }>(
+    `/api/products/${id}`,
+    { method: "DELETE" }
+  )
+  if (!ok) throw new Error(data?.message ?? "Failed to delete product")
 }

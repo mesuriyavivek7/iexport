@@ -1,3 +1,5 @@
+import { httpClient } from "@/lib/http-client"
+
 export interface CategorySectionData {
   heading: string
   subheading: string
@@ -8,27 +10,16 @@ export interface CategorySectionResponse {
   data?: CategorySectionData
 }
 
-/** GET category section (home page) – call from client: fetch /api/category-section */
 export async function getCategorySection(): Promise<CategorySectionData | null> {
-  const res = await fetch("/api/category-section", { cache: "no-store" })
-  if (!res.ok) return null
-  const json = (await res.json()) as CategorySectionResponse
-  if (!json?.success || !json?.data) return null
-  return json.data
+  const { data, ok } = await httpClient<CategorySectionResponse>("/api/category-section")
+  if (!ok || !data?.success || !data?.data) return null
+  return data.data
 }
 
-/** PUT category section – call from client: { heading, subheading } */
-export async function updateCategorySection(
-  payload: CategorySectionData
-): Promise<{ success: boolean; error?: string }> {
-  const res = await fetch("/api/category-section", {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  })
-  const data = (await res.json().catch(() => ({}))) as { success?: boolean; message?: string }
-  if (!res.ok) {
-    return { success: false, error: data?.message ?? "Failed to update category section" }
-  }
-  return { success: data?.success ?? true }
+export async function updateCategorySection(payload: CategorySectionData): Promise<void> {
+  const { data, ok } = await httpClient<{ success?: boolean; message?: string }>(
+    "/api/category-section",
+    { method: "PUT", body: JSON.stringify(payload) }
+  )
+  if (!ok) throw new Error(data?.message ?? "Failed to update category section")
 }

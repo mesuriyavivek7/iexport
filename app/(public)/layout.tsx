@@ -1,22 +1,10 @@
-import React from 'react'
-import Header from '@/components/website/header'
-import Footer from '@/components/website/footer'
-import { getContactUsForHome } from '@/lib/home-data'
+import React from "react"
+import { PublicLayoutClient } from "@/components/website/public-layout-client"
 
 type Props = {
   children: React.ReactNode
 }
 
-const Layout = async ({ children }: Props) => {
-  const contactData = await getContactUsForHome()
-
-  return (
-    <main className="h-full font-roboto-condensed">
-      <Header />
-      {children}
-      <Footer data={contactData} />
-    </main>
-  )
+export default function Layout({ children }: Props) {
+  return <PublicLayoutClient>{children}</PublicLayoutClient>
 }
-
-export default Layout

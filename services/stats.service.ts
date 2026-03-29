@@ -1,3 +1,5 @@
+import { httpClient } from "@/lib/http-client"
+
 export interface StatItem {
   count: string
   title: string
@@ -13,28 +15,17 @@ export interface StatsResponse {
   stats?: StatItem[]
 }
 
-/** GET stats (call from client: fetch /api/stats) */
 export async function getStats(): Promise<StatItem[] | null> {
-  const res = await fetch("/api/stats", { cache: "no-store" })
-  if (!res.ok) return null
-  const json = (await res.json()) as StatsResponse
-  const stats = json?.data?.stats ?? json?.stats
-  if (!Array.isArray(stats)) return null
-  return stats
+  const { data, ok } = await httpClient<StatsResponse>("/api/stats")
+  if (!ok) return null
+  const stats = data?.data?.stats ?? data?.stats
+  return Array.isArray(stats) ? stats : null
 }
 
-/** PUT stats (call from client: { stats: StatItem[] }) */
-export async function updateStats(
-  stats: StatItem[]
-): Promise<{ success: boolean; error?: string }> {
-  const res = await fetch("/api/stats", {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ stats }),
-  })
-  const data = (await res.json().catch(() => ({}))) as { success?: boolean; message?: string }
-  if (!res.ok) {
-    return { success: false, error: data?.message ?? "Failed to update stats" }
-  }
-  return { success: data?.success ?? true }
+export async function updateStats(stats: StatItem[]): Promise<void> {
+  const { data, ok } = await httpClient<{ success?: boolean; message?: string }>(
+    "/api/stats",
+    { method: "PUT", body: JSON.stringify({ stats }) }
+  )
+  if (!ok) throw new Error(data?.message ?? "Failed to update stats")
 }

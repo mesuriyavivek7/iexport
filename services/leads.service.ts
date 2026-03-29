@@ -1,3 +1,5 @@
+import { httpClient } from "@/lib/http-client"
+
 export interface LeadItem {
   _id: string
   name: string
@@ -12,11 +14,22 @@ export interface LeadsListResponse {
   data?: LeadItem[]
 }
 
-/** GET all leads (call from client: fetch /api/leads) */
 export async function getLeads(): Promise<LeadItem[]> {
-  const res = await fetch("/api/leads", { cache: "no-store" })
-  if (!res.ok) return []
-  const json = (await res.json()) as LeadsListResponse
-  const data = json?.data
-  return Array.isArray(data) ? data : []
+  const { data, ok } = await httpClient<LeadsListResponse>("/api/leads")
+  if (!ok) return []
+  return Array.isArray(data?.data) ? data.data : []
+}
+
+export interface SubmitLeadPayload {
+  name: string
+  email: string
+  message: string
+}
+
+export async function submitLead(payload: SubmitLeadPayload): Promise<void> {
+  const { data, ok } = await httpClient<{ success?: boolean; message?: string }>(
+    "/api/leads",
+    { method: "POST", body: JSON.stringify(payload) }
+  )
+  if (!ok) throw new Error(data?.message ?? "Failed to send inquiry")
 }
