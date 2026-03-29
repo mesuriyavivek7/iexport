@@ -8,6 +8,7 @@ import {
   Facebook,
 } from 'lucide-react'
 import { getContactUsForHome } from '@/lib/home-data'
+import { normalizeContactEmails } from '@/lib/contact-emails'
 import ContactForm from '@/components/website/contact-form'
 
 function telLink(mobileNo: string) {
@@ -18,7 +19,7 @@ const defaultContactPersons = [
   { name: 'Patel Jainish', mobileNo: '+91 6355007570' },
   { name: 'Patel Yagnik', mobileNo: '+91 9925867065' },
 ]
-const defaultEmail = 'procureexport24@gmail.com'
+const defaultEmails = ['procureexport24@gmail.com']
 const defaultPoints = [
   'Source high-quality sand and seeds from trusted suppliers',
   'Ensure timely global shipping with end-to-end logistics support',
@@ -35,7 +36,7 @@ export default async function ContactPage() {
   const data = await getContactUsForHome()
 
   const persons = data?.contactPersons?.length ? data.contactPersons : defaultContactPersons
-  const email = data?.email || defaultEmail
+  const emails = normalizeContactEmails(data?.email, defaultEmails)
   const points = data?.points?.length ? data.points : defaultPoints
   const social = data?.socialLinks ?? defaultSocial
 
@@ -111,19 +112,26 @@ export default async function ContactPage() {
                   }
                  })}
                 </div>
-                <div className='flex items-start gap-3 sm:gap-4'>
-                  <span
-                    className='border border-(--color-primary-blue) p-2 rounded-full shrink-0 mt-0.5'
-                    aria-hidden
-                  >
-                    <Mail size={20} className='sm:w-5 sm:h-5' />
-                  </span>
-                  <a
-                    href={`mailto:${email}`}
-                    className='text-sm sm:text-base text-foreground hover:text-primary break-all'
-                  >
-                    {email}
-                  </a>
+                <div className='flex flex-col gap-3 sm:gap-4'>
+                  {emails.map((addr, i) => (
+                    <div
+                      key={`${addr}-${i}`}
+                      className='flex items-center gap-3 sm:gap-4'
+                    >
+                      <span
+                        className='border border-(--color-primary-blue) p-2 rounded-full shrink-0'
+                        aria-hidden
+                      >
+                        <Mail size={20} className='sm:w-5 sm:h-5' />
+                      </span>
+                      <a
+                        href={`mailto:${addr}`}
+                        className='min-w-0 text-sm sm:text-base text-foreground hover:text-primary break-all'
+                      >
+                        {addr}
+                      </a>
+                    </div>
+                  ))}
                 </div>
               </div>
               <div className='flex flex-col gap-3 sm:gap-4 mt-4 sm:mt-8'>

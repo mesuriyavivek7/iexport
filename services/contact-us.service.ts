@@ -12,7 +12,7 @@ export interface SocialLinks {
 export interface ContactUsData {
   _id: string
   contactPersons: ContactPerson[]
-  email: string
+  email: string[]
   points: string[]
   socialLinks: SocialLinks
   createdAt?: string

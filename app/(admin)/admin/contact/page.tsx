@@ -9,6 +9,7 @@ import {
   type ContactUsPayload,
   type SocialLinks,
 } from "@/services"
+import { normalizeContactEmails } from "@/lib/contact-emails"
 import { Button } from "@/components/ui/button"
 import { Loader2, Plus, Trash2 } from "lucide-react"
 
@@ -51,7 +52,7 @@ export default function ContactPage() {
     defaultContactPerson(),
     defaultContactPerson(),
   ])
-  const [email, setEmail] = useState("")
+  const [emails, setEmails] = useState<string[]>([""])
   const [points, setPoints] = useState<string[]>([])
   const [socialLinks, setSocialLinks] = useState<SocialLinks>(defaultSocialLinks())
 
@@ -66,7 +67,10 @@ export default function ContactPage() {
         const raw = Array.isArray(data.contactPersons) ? data.contactPersons : []
         const two = [...raw, defaultContactPerson(), defaultContactPerson()].slice(0, 2)
         setContactPersons(two)
-        setEmail(data.email ?? "")
+        {
+          const list = normalizeContactEmails(data.email, [])
+          setEmails(list.length > 0 ? list : [""])
+        }
         setPoints(Array.isArray(data.points) ? [...data.points] : [])
         setSocialLinks({
           instagram: data.socialLinks?.instagram ?? "",
@@ -75,7 +79,7 @@ export default function ContactPage() {
         })
       } else {
         setContactPersons([defaultContactPerson(), defaultContactPerson()])
-        setEmail("")
+        setEmails([""])
         setPoints([])
         setSocialLinks(defaultSocialLinks())
       }
@@ -97,6 +101,16 @@ export default function ContactPage() {
       return next
     })
 
+  const addEmail = () => setEmails((prev) => [...prev, ""])
+  const removeEmail = (index: number) =>
+    setEmails((prev) => (prev.length <= 1 ? prev : prev.filter((_, i) => i !== index)))
+  const updateEmail = (index: number, value: string) =>
+    setEmails((prev) => {
+      const next = [...prev]
+      next[index] = value
+      return next
+    })
+
   const addPoint = () => setPoints((prev) => [...prev, ""])
   const removePoint = (index: number) =>
     setPoints((prev) => prev.filter((_, i) => i !== index))
@@ -111,9 +125,15 @@ export default function ContactPage() {
     e.preventDefault()
     setSaving(true)
     try {
+      const emailList = emails.map((e) => e.trim()).filter(Boolean)
+      if (emailList.length === 0) {
+        toast.error("Add at least one contact email.")
+        setSaving(false)
+        return
+      }
       const payload: ContactUsPayload = {
         contactPersons,
-        email: email.trim(),
+        email: emailList,
         points: points.filter((p) => p.trim()),
         socialLinks: {
           instagram: socialLinks.instagram?.trim() || undefined,
@@ -198,21 +218,56 @@ export default function ContactPage() {
           </div>
         </div>
 
-        {/* Email */}
+        {/* Emails */}
         <div className="rounded-lg border border-border bg-card p-4">
-          <h3 className="mb-4 text-sm font-semibold text-foreground">Email</h3>
+          <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h3 className="text-sm font-semibold text-foreground">Contact emails</h3>
+              <p className="mt-0.5 text-xs text-muted-foreground">
+                Add or remove addresses. At least one valid email is required to save.
+              </p>
+            </div>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={addEmail}
+              className="gap-1 shrink-0"
+            >
+              <Plus className="size-4" />
+              Add email
+            </Button>
+          </div>
           <div className="space-y-2">
-            <label htmlFor="contact-email" className={labelClass}>
-              Contact email
-            </label>
-            <input
-              id="contact-email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="procureexport24@gmail.com"
-              className={inputClass}
-            />
+            {emails.map((value, index) => (
+              <div key={`email-${index}`} className="flex gap-2">
+                <input
+                  type="email"
+                  id={index === 0 ? "contact-email-0" : undefined}
+                  autoComplete="email"
+                  value={value}
+                  onChange={(e) => updateEmail(index, e.target.value)}
+                  placeholder={
+                    index === 0
+                      ? "e.g. procureexport24@gmail.com"
+                      : `Email ${index + 1}`
+                  }
+                  className={inputClass}
+                  aria-label={`Contact email ${index + 1}`}
+                />
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="icon"
+                  onClick={() => removeEmail(index)}
+                  disabled={emails.length <= 1}
+                  aria-label={`Remove email ${index + 1}`}
+                  className="shrink-0"
+                >
+                  <Trash2 className="size-4" />
+                </Button>
+              </div>
+            ))}
           </div>
         </div>
 

@@ -3,10 +3,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { Mail, Phone, MapPin, Instagram, Linkedin, Facebook } from 'lucide-react'
+import { normalizeContactEmails } from '@/lib/contact-emails'
 
 export interface FooterContactData {
   contactPersons: { name: string; mobileNo: string }[]
-  email: string
+  email: string[]
   points?: string[]
   socialLinks?: { instagram?: string; linkedin?: string; facebook?: string }
 }
@@ -15,7 +16,7 @@ const defaultContactPersons = [
   { name: 'Patel Jainish', mobileNo: '+91 6355007570' },
   { name: 'Patel Yagnik', mobileNo: '+91 9925867065' },
 ]
-const defaultEmail = 'procureexport24@gmail.com'
+const defaultEmails = ['procureexport24@gmail.com']
 const defaultAddress = '584, Patel Vas, First Line, Ralisana, Visnagar, Mahesana'
 
 function telLink(mobileNo: string) {
@@ -24,7 +25,7 @@ function telLink(mobileNo: string) {
 
 const Footer = ({ data }: { data?: FooterContactData | null }) => {
   const persons = data?.contactPersons?.length ? data.contactPersons : defaultContactPersons
-  const email = data?.email || defaultEmail
+  const emails = normalizeContactEmails(data?.email, defaultEmails)
   const address = defaultAddress
   const social = data?.socialLinks
 
@@ -117,12 +118,19 @@ const Footer = ({ data }: { data?: FooterContactData | null }) => {
               )
               }
              })}
-            <div className='flex items-start gap-3'>
-              <span className='p-1.5 sm:p-1 bg-white rounded-md shrink-0 mt-0.5'>
-                <Mail size={20} className='text-[#041d2d] sm:w-[22px] sm:h-[22px]' aria-hidden />
-              </span>
-              <a href={`mailto:${email}`} className='text-[#adb6c0] text-sm sm:text-base hover:text-white transition-colors break-all'>{email}</a>
-            </div>
+            {emails.map((addr, i) => (
+              <div key={`${addr}-${i}`} className='flex items-center gap-3'>
+                <span className='p-1.5 sm:p-1 bg-white rounded-md shrink-0'>
+                  <Mail size={20} className='text-[#041d2d] sm:w-[22px] sm:h-[22px]' aria-hidden />
+                </span>
+                <a
+                  href={`mailto:${addr}`}
+                  className='min-w-0 text-[#adb6c0] text-sm sm:text-base hover:text-white transition-colors break-all'
+                >
+                  {addr}
+                </a>
+              </div>
+            ))}
             <div className='flex items-start gap-3'>
               <span className='p-1.5 sm:p-1 bg-white rounded-md shrink-0 mt-0.5'>
                 <MapPin size={20} className='text-[#041d2d] sm:w-[22px] sm:h-[22px]' aria-hidden />

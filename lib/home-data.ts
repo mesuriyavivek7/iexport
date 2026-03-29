@@ -60,7 +60,7 @@ export interface CertificateItem {
 
 export interface ContactUsData {
   contactPersons: { name: string; mobileNo: string }[]
-  email: string
+  email: string[]
   points: string[]
   socialLinks: { instagram?: string; linkedin?: string; facebook?: string }
 }
